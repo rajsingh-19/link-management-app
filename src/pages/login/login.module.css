@@ -1,0 +1,129 @@
+.loginPageContainer {
+    display: flex;
+    flex-direction: row;
+}
+/*              Img Container          */
+.imgContainer {
+    width: 45%;
+    height: 100vh;
+    display: inline-block;
+    overflow: hidden;
+    object-fit: fill;
+}
+.loginImg {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.onImgLine {
+    top: 25px;
+    left: 25px;
+    position: absolute;
+    color: #222F3E;
+}
+/*      login section        */
+.loginSection {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    padding: 25px 40px;
+}
+.btnsNav {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    margin-bottom: 80px;
+}
+.btnsNav span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #3B3C51;
+    cursor: pointer;
+}
+.btnsNav button {
+    width: 75px;
+    height: 35px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFFFFF;
+    background-color: #1B48DA;
+    border: 1px solid #1B48DA;
+    cursor: pointer;
+    margin-left: 30px;
+}
+/*      login container          */
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.loginHeading {
+    width: 80%;
+    font-size: 20px;
+    font-weight: 600;
+    color: #3B3C51;
+    margin-bottom: 100px;
+}
+.loginForm {
+    width: 80%;
+}
+.inputContainer {
+    width: 100%;
+    height: 42px;
+}
+.input {
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF;
+    border: 1px solid #3B3C51;
+    border-radius: 4px;
+    color: #B3B3B3;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 5px 10px;
+    outline: none;
+}
+.input::placeholder {
+    color: #B3B3B3;
+    font-weight: 600;
+}
+.loginBtn {
+    width: 100%;
+    height: 42px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #FFFFFF;
+    background-color: #1B48DA;
+    border: 1px solid #1B48DA;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-bottom: 30px;
+}
+.bottomLIne {
+    font-size: 16px;
+    font-weight: 600;
+    color: #3B3C51;
+}
+.clickable {
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #1B48DA;
+}
+/*       Error message container */
+.errorContainer {
+    width: 100%;
+}
+.errorMessage {
+    height: 20px;
+    font-size: 16px;
+    color: #FF0101;
+    line-height: 20px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+.errorMessage:empty {
+    visibility: hidden;
+}
