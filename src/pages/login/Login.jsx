@@ -94,16 +94,17 @@ const Login = () => {
                 </div>
                 <div className={styles.loginContainer}>
                     <p className={styles.loginHeading}>Login</p>
+                    {/*         Form for user login */}
                     <form onSubmit={handleLogin} className={styles.loginForm}>
-                        {/* Form for user signn in */}
+                        {/*         email       */}
                         <div className={styles.inputContainer}>
                             <input className={styles.input} type="email" name="email" value={loginFormData.email} placeholder="Email id" onChange={(e) => setLoginFormData({...loginFormData, [e.target.name]: e.target.value})} />
                         </div>
-                        {/* Error message for email */}
                         <div className={styles.errorContainer}>
                             {errors.email ? ( <p className={styles.errorMessage}>{errors.email}</p>) : 
                             (<p className={styles.errorMessage}>&nbsp;</p>)}
                         </div>
+                        {/*         password     */}
                         <div className={`${styles.inputContainer}`}>
                             <input className={styles.input}  type="password" name="password" value={loginFormData.password} placeholder="Password" onChange={(e) => setLoginFormData({...loginFormData, [e.target.name]: e.target.value})} />
                         </div>
@@ -111,6 +112,7 @@ const Login = () => {
                             {errors.password ? (<p className={styles.errorMessage}>{errors.password}</p>) : 
                             (<p className={styles.errorMessage}>&nbsp;</p>)}
                         </div>
+                        {/*         login btn     */}
                         <div>
                             <button type="submit" className={styles.loginBtn} >Login</button>
                         </div>

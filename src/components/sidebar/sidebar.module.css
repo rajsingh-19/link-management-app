@@ -1,0 +1,88 @@
+.sidebarContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    border-right: 1px solid #F6F6F9;
+    background-color: #FFFFFFE8;
+}
+.iconContainer {
+    height: 80px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.iconContainer div {
+    width: 90%;
+    padding: 0px 10px;
+}
+.navigationContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 150px;
+    border-bottom: 1px solid #F2F2F2;
+}
+.navigationContainer div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 90%;
+    height: 39px;
+    padding: 0px 10px;
+    transition: background-color 0.3s;
+}
+.navigationContainer div img {
+    margin-right: 5px;
+}
+.navigationContainer div button {
+    font-weight: 600;
+    font-size: 16px;
+    color: #3B3C51;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.navigationContainer div:first-child > button {
+    color: #1B48DA;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.settingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 70px;
+    border-bottom: 1px solid #F6F6F9;
+}
+.settingContainer div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 90%;
+    height: 39px;
+    padding: 0px 10px;
+    transition: background-color 0.3s;
+}
+.settingContainer div img {
+    margin-right: 5px;
+}
+.settingContainer div button {
+    font-weight: 600;
+    font-size: 16px;
+    color: #3B3C51;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+/* Active button styles */
+.active {
+    background-color: #EFF6FF;
+    border-radius: 8px;
+}
