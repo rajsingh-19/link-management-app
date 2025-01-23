@@ -1,18 +1,23 @@
 
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./settings.module.css";
 import { getUserInfo, updateUser } from "../../services/index";
 import Navbar from "../../components/navbar/Navbar";
 import Sidebar from "../../components/sidebar/Sidebar";
+import ConfirmCard from "../../components/confirmcard/ConfirmCard";
 import { toast } from "react-toastify";
 
 const Settings = () => {
+  const navigate = useNavigate();
+
   const [updateFormData, setUpdateFormData] = useState({
     name: "",
     email: "",
     mobile: "",
   });
   const [errors, setErrors] = useState({});
+  const [modalStatus, setModalStatus] = useState(false);
 
   useEffect(() => {  
     const fetchUserData = async () => {
@@ -81,8 +86,21 @@ const Settings = () => {
     }
   };
 
+  const handleDeleteConfirm = () => {
+    setModalStatus(true);
+  };
+
+  //      function for closing the modal
+  const handleCloseModal = (e) => {
+    setModalStatus(false);
+  };
+
+  const handleAccountDelete = () => {
+    navigate('/');
+  };
+
   return (
-    <div className={styles.dashboardContainer}>
+    <div className={styles.settingsContainer}>
       <div className={styles.sidebarSection}>
         <Sidebar />
       </div>
@@ -142,12 +160,18 @@ const Settings = () => {
             <div>
               <button type="submit" className={styles.updateBtn}>Save Changes</button>
             </div>
-            <div>
-              <button className={styles.deleteBtn}>Delete Account</button>
-            </div>
           </form>
+          <div>
+              <button className={styles.deleteBtn} onClick={handleDeleteConfirm}>Delete Account</button>
+            </div>
         </div>
       </div>
+      {/*             Modal Container          */}
+        {modalStatus && (
+          <div className={styles.modalViewContainer}>
+            <ConfirmCard handleAction={handleAccountDelete} handleCloseModal={handleCloseModal} label={"delete"} />
+          </div>
+        )}
     </div>
   );
 };

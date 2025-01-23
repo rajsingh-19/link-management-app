@@ -1,0 +1,54 @@
+.cardContainer {
+    width: 496px;
+    height: 222px;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.crossContainer {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    border: none;
+    background-color: transparent;
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+}
+.confirmation {
+    font-size: 16px;
+    font-weight: 500;
+    color: #000000;
+    line-height: 22px;
+    margin-top: 5px;
+    margin-bottom: 42px;
+}
+
+.btnsContainer {
+    width: 382px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.btnsContainer button {
+    width: 179px;
+    height: 35px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+}
+.btnsContainer button:first-of-type {
+    color: #000000;
+    background-color: #ECECEE;
+}
+.btnsContainer button:last-of-type {
+    color: #FFFFFF;
+    background-color: #1B48DA;
+}
