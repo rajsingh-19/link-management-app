@@ -22,3 +22,19 @@ export const login = (data) => {
         body: JSON.stringify(data)
     })
 };
+
+export const getUserInfo = () => {
+    return fetch(`${apiURL}api/user/info`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${localStorage.getItem('token')}`
+        }
+    })
+};
+
+export const updateUser = (data) => {
+    // return fetch(`${apiURL}api/user/update`, {
+
+    // })
+};
