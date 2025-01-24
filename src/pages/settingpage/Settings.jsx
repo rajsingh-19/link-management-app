@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./settings.module.css";
 import { getUserInfo, updateUser } from "../../services/index";
 import Navbar from "../../components/navbar/Navbar";
 import Sidebar from "../../components/sidebar/Sidebar";
-import ConfirmCard from "../../components/confirmcard/ConfirmCard";
+import ConfirmCard from "../../modals/confirmcard/ConfirmCard";
 import { toast } from "react-toastify";
 
 const Settings = () => {

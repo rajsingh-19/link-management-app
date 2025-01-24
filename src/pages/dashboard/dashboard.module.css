@@ -10,15 +10,107 @@
 }
 .pageSection {
     width: 80%;
-    /* height: 100%; */
     display: flex;
     flex-direction: column;
 }
 .navContainer {
     width: 100%;
-    /* height: 10%; */
 }
+/*          dashboard content container  */
 .contentContainer {
     width: 100%;
-    /* height: 90%; */
+}
+.countContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 63px;
+    margin-left: 44px;
+}
+/*          clicks counting  */
+.clicksCountContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 209px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 27px;
+    margin-bottom: 63px;
+}
+.clicksCountContainer span:first-of-type {
+    color: #181820;
+}
+.clicksCountContainer span:last-of-type {
+    color: #1B48DA;
+}
+/*          clicks info card     */
+.clicksInfoCardsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 882px;
+}
+.clicksInfoCardsContainer > div {
+    width: 433px;
+    height: 463px;
+    border-radius: 6px;
+    border: 1px solid #ECECF2;
+    box-shadow: 0px 1px 2px 0px #1018280D;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 30px;
+}
+.clicksInfoCardsContainer > div > div:first-of-type {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;  
+    color: #1B48DA;
+    margin-bottom: 38px;
+}
+/*      date wise container  */
+.datewiseContainer {
+    width: 372px;
+    display: flex;
+    flex-direction: column;
+}
+.datewiseContainer > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.datewiseContainer > div span:first-of-type {
+    width: 75px;
+}
+.datewiseContainer > div span:last-of-type {
+    width: 45px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+/*      device wise container    */
+.devicewiseContainer {
+    width: 322px;
+    display: flex;
+    flex-direction: column;
+}
+.devicewiseContainer > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.devicewiseContainer > div span:first-of-type {
+    width: 65px;
+}
+.devicewiseContainer > div span:last-of-type {
+    width: 35px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.progressbarContainer {
+    width: 200px;
+    height: 15px;
+    background-color: blue;
 }
