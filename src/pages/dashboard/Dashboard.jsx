@@ -2,11 +2,23 @@ import React, { useState } from 'react';
 import styles from "./dashboard.module.css";
 import Navbar from '../../components/navbar/Navbar';
 import Sidebar from '../../components/sidebar/Sidebar';
+import LinkModal from '../../modals/link/LinkModal';
 
 const Dashboard = () => {
   const [clicksData, setClicksData] = useState([]);
+  const [modalStatus, setModalStatus] = useState(false);
   // const [data, setData] = useState(false);
   const [data, setData] = useState(true);
+
+  //      function for creating the link
+  const handleCreateLink = () => {
+    setModalStatus(true);
+  };
+
+  //      function for closing the modal
+  const handleCloseModal = (e) => {
+    setModalStatus(false);
+  };
 
   return (
     <div className={styles.dashboardContainer}>
@@ -14,9 +26,7 @@ const Dashboard = () => {
         <Sidebar />
       </div>
       <div className={styles.pageSection}>
-        {/* <div className={styles.navContainer}> */}
-          <Navbar />
-        {/* </div> */}
+        <Navbar handleCreateLink={handleCreateLink} />
         <div className={styles.contentContainer}>
           {
             data && (
@@ -77,6 +87,13 @@ const Dashboard = () => {
           }
         </div>
       </div>
+      {/*             Modal Container          */}
+      {modalStatus && (
+          <div className={styles.modalViewContainer}>
+            <LinkModal handleCloseModal={handleCloseModal} />
+          </div>
+        )
+      }
     </div>
   )
 };

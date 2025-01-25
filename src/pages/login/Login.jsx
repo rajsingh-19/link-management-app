@@ -53,7 +53,13 @@ const Login = () => {
             const res = await login(loginFormData);    // Calls the `signin` function with the form data
             if(res.status === 200) {                // Checks if the response status indicates success
                 const data = await res.json();
-                localStorage.setItem('token', data.token);      // Save token for later use
+                const token = data.result.token;
+                const userId = data.result.userId;
+                const name = data.result.name;
+
+                localStorage.setItem('token', token);      // Save token for later use
+                localStorage.setItem('userId', userId);      // Save userId for later use
+                localStorage.setItem('name', name);      // Save name for later use
 
                 // Reset form data after successful registration
                 setLoginFormData({

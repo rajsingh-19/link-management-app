@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./settings.module.css";
-import { getUserInfo, updateUser } from "../../services/index";
+import { getUserInfo, updateUser, deleteUser } from "../../services/index";
 import Navbar from "../../components/navbar/Navbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import ConfirmCard from "../../modals/confirmcard/ConfirmCard";
@@ -9,7 +9,6 @@ import { toast } from "react-toastify";
 
 const Settings = () => {
   const navigate = useNavigate();
-
   const [updateFormData, setUpdateFormData] = useState({
     name: "",
     email: "",
@@ -17,21 +16,54 @@ const Settings = () => {
   });
   const [errors, setErrors] = useState({});
   const [modalStatus, setModalStatus] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false); // Track deletion status
 
   useEffect(() => {  
-    const fetchUserData = async () => {
-      const userDataRes = await getUserInfo();
-      if(userDataRes.status === 200) {
-        const data = await userDataRes.json();
+    let isMounted = true; // Variable to track whether the component is mounted
 
-        setUpdateFormData(data);
-      } else {
-        toast.error(userDataRes.status);
-      }
+    const fetchUserData = async () => {
+      const userId = localStorage.getItem('userId');
+      const token = localStorage.getItem('token');
+
+      if (!userId || !token) {
+        console.error("Missing user ID or token");
+        navigate('/'); 
+        return;   // Stop further execution
+      };
+
+      try {
+        const userDataRes = await getUserInfo(userId, token);
+        if(isMounted && userDataRes.status === 200) {
+          const data = await userDataRes.json();
+          
+          // Set the values in the state
+          setUpdateFormData({
+            name: data.result.name,
+            email: data.result.email,
+            mobile: data.result.mobile
+          });
+        } else if (isMounted) {
+          const errorData = await userDataRes.json();
+          const errorMessage = errorData.message || "An error occurred";
+          toast.error(errorMessage);
+        }
+      } catch (error) {
+        if (isMounted) {
+          console.error(error);
+          toast.error("An unexpected error occurred.");
+        }
+      };
+    };
+    
+    // fetchUserData();
+    if (!isDeleting) {
+      fetchUserData(); // Only fetch user data if not deleting
     };
 
-    // fetchUserData();
-  },[]);
+    return () => {
+      isMounted = false; // Cleanup to prevent state updates after unmount
+    };
+  },[navigate, isDeleting]);
 
   // Form validation logic
   const validateForm = () => {
@@ -60,21 +92,22 @@ const Settings = () => {
 
     if (!validateForm()) {
       return;
-    }
+    };
+
+    const userId = localStorage.getItem('userId');
+    const token = localStorage.getItem('token');
+
+    if (!userId || !token) {
+      console.error("Missing user ID or token");
+      return { error: "User ID or token is missing." };
+    };
 
     try {
-      const res = await updateUser(updateFormData); // Calls the `register` function with the form data
+      const res = await updateUser(updateFormData, userId, token);
       if (res.status === 201) {
-        // Checks if the response status indicates success
-        setUpdateFormData({
-          name: "",
-          email: "",
-          mobile: "",
-        });
 
         toast.success("Updated Successfully");
       } else {
-        // Handles any errors by logging the response and showing an alert
         const errorData = await res.json();
         const errorMessage = errorData.message || "An error occurred";
         toast.error(errorMessage); // Show the error message from the backend
@@ -85,6 +118,7 @@ const Settings = () => {
     }
   };
 
+  //      function for opening the modal
   const handleDeleteConfirm = () => {
     setModalStatus(true);
   };
@@ -94,8 +128,42 @@ const Settings = () => {
     setModalStatus(false);
   };
 
-  const handleAccountDelete = () => {
-    navigate('/');
+  //               Function to handle user deletion
+  const handleAccountDelete = async () => {
+    setIsDeleting(true); // Set deleting status to true
+    const userId = localStorage.getItem('userId');
+    const token = localStorage.getItem('token');
+
+    if (!userId || !token) {
+      console.error("Missing user ID or token");
+      return { error: "User ID or token is missing." };
+    };
+
+    try {
+      const res = await deleteUser(userId, token); 
+
+      console.log(res);
+      if (res.status === 200) {
+        
+        console.log(res);
+
+        // Clear localStorage and navigate to the login page immediately
+        localStorage.removeItem('userId');
+        localStorage.removeItem('token');
+        localStorage.removeItem('name');
+        toast.success("Account Deleted Successfully");
+        navigate('/');
+      } else {
+        console.log(res);
+        // Handles any errors by logging the response and showing an alert
+        const errorData = await res.json();
+        const errorMessage = errorData.message || "An error occurred";
+        toast.error(errorMessage); // Show the error message from the backend
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("An unexpected error occurred:", error);
+    }
   };
 
   return (
@@ -170,7 +238,8 @@ const Settings = () => {
           <div className={styles.modalViewContainer}>
             <ConfirmCard handleAction={handleAccountDelete} handleCloseModal={handleCloseModal} label={"delete"} />
           </div>
-        )}
+        )
+      }
     </div>
   );
 };
