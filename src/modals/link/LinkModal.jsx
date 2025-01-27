@@ -24,8 +24,9 @@ const LinkModal = ({ handleCloseModal, id }) => {
   }, [id]);
 
   const fetchLink = async () => {
+    const token = localStorage.getItem('token');
     try {
-      const result = await getLink(id);
+      const result = await getLink(id, token);
       if (result.status === 200) {
         const data = await result.json();
 

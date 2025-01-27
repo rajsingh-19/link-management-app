@@ -12,20 +12,27 @@ const Analytics = () => {
   const [modalStatus, setModalStatus] = useState(false);
   const [sortOrder, setSortOrder] = useState("asc");
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 5;
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalItems, setTotalItems] = useState(0);
   
   useEffect(() => {
     const fetchClicksData = async () => {
       const userId = localStorage.getItem('userId');
+      const token = localStorage.getItem('token');
   
       try {
-        const res = await getAllClicks(userId, currentPage);
+        const res = await getAllClicks(userId, currentPage, token);
 
         if (res.status === 200) {      
           const data = await res.json();
           const clicksArr = data.result;
+          const { totalItems } = data; 
 
+          // Set total items and calculate total pages
+          setTotalItems(totalItems);
+          setTotalPages(Math.ceil(totalItems / 8));
           setClicksData(clicksArr);
+          setCurrentPage(currentPage);
         } else {
           const errorData = await res.json();
           const errorMessage = errorData.message || "An error occurred";
@@ -36,9 +43,9 @@ const Analytics = () => {
       }
     };
 
-    fetchClicksData();
+    fetchClicksData(currentPage);
   },[currentPage, modalStatus]);
-  
+
   //      function for open the create link
   const handleCreateLink = () => {
     setModalStatus(true);
@@ -52,7 +59,7 @@ const Analytics = () => {
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
-    }
+    };
   };
 
   // Function to sort clicksData by timeStamp
@@ -129,20 +136,21 @@ const Analytics = () => {
               <span>&lt;</span>
             </button>
             {/* Page Numbers */}
-            {[1, 2, 3, 4, 5].map((page, index) => (
-              <button
-                key={index}
-                onClick={() =>
-                  typeof page === "number" && handlePageChange(page)
-                }
-                className={currentPage === page ? styles.activeButton : ""}
-                style={{
-                  color: currentPage === page ? "blue" : "",
-                }}
-              >
-                {page}
-              </button>
-            ))}
+            {[...Array(totalPages)].map((_, index) => {
+              const page = index + 1; // Page numbers start from 1
+              return (
+                <button
+                  key={page}
+                  onClick={() => handlePageChange(page)}
+                  className={currentPage === page ? styles.activeButton : ''}
+                  style={{
+                    color: currentPage === page ? 'blue' : '',
+                  }}
+                >
+                  {page}
+                </button>
+              );
+            })}
             {/* Right Arrow Button */}
             <button
               onClick={() => handlePageChange(currentPage + 1)}

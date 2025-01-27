@@ -26,8 +26,9 @@ const Dashboard = () => {
   }, []);
 
   const fetchAllClicks = async () => {
+    const token = localStorage.getItem('token');
     try {
-      const result = await getAllClicksForDashboard(userId);
+      const result = await getAllClicksForDashboard(userId, token);
       if (result.status === 200) {
         const data = await result.json();
 

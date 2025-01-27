@@ -18,18 +18,11 @@ const Links = () => {
   const [confirmModalStatus, setConfirmModalStatus] = useState(false);
   const [linkIdToDelete, setLinkIdToDelete] = useState(null);
   const [linkIdToEdit, setLinkIdToEdit] = useState(null);
-  const [linkData, setLinkData] = useState([{
-    _id: "",
-    date: "",
-    originalUrl: "",
-    shortenUrl: "",
-    remarks: "",
-    clicks: "",
-    status: ""
-  }]);
+  const [linkData, setLinkData] = useState([]);
   const [sortOrder, setSortOrder] = useState("desc");
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 5;
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalItems, setTotalItems] = useState(0);
   const [isGroupedByStatus, setIsGroupedByStatus] = useState(false);
   const [originalLinkData, setOriginalLinkData] = useState([]);
 
@@ -45,8 +38,15 @@ const Links = () => {
           const data = await res.json();
           const linkArr = data.result;
 
+          const { totalItems } = data; 
+
+          // Set total items and calculate total pages
+          setTotalItems(totalItems);
+          setTotalPages(Math.ceil(totalItems / 8));
+
           // Sort the data based on the current sort order
           sortLinks(linkArr, sortOrder);
+          setCurrentPage(currentPage);
         } else {
           const errorData = await res.json();
           const errorMessage = errorData.message || "An error occurred";
@@ -57,7 +57,7 @@ const Links = () => {
       }
     };
 
-    fetchLinksData();
+    fetchLinksData(currentPage);
   }, [currentPage, sortOrder, modalStatus]);
 
   // Function to sort links by date
@@ -128,7 +128,7 @@ const Links = () => {
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
-    }
+    };
   };
 
   //      function for open the create link
@@ -277,21 +277,22 @@ const Links = () => {
             >
               <span>&lt;</span>
             </button>
-
-            {/* Page Numbers */}
-            {[1, 2, 3, 4, 5].map((page, index) => (
-              <button
-                key={index}
-                onClick={() => typeof page === 'number' && handlePageChange(page)}
-                className={currentPage === page ? styles.activeButton : ''}
-                style={{
-                  color: currentPage === page ? 'blue' : ''
-                }}
-              >
-                {page}
-              </button>
-            ))}
-
+            {/*   Page Numbers   */}
+            {[...Array(totalPages)].map((_, index) => {
+              const page = index + 1; // Page numbers start from 1
+              return (
+                <button
+                  key={page}
+                  onClick={() => handlePageChange(page)}
+                  className={currentPage === page ? styles.activeButton : ''}
+                  style={{
+                    color: currentPage === page ? 'blue' : '',
+                  }}
+                >
+                  {page}
+                </button>
+              );
+            })}
             {/* Right Arrow Button */}
             <button
               onClick={() => handlePageChange(currentPage + 1)}

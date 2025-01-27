@@ -7,7 +7,7 @@ export const register = (data) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(data)
   });
 };
 
@@ -18,7 +18,7 @@ export const login = (data) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(data)
   });
 };
 
@@ -28,8 +28,8 @@ export const getUserInfo = (userId, token) => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `${token}`,
-    },
+      Authorization: `${token}`
+    }
   });
 };
 
@@ -39,9 +39,9 @@ export const updateUser = (updateFormData, userId, token) => {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `${token}`,
+      Authorization: `${token}`
     },
-    body: JSON.stringify(updateFormData),
+    body: JSON.stringify(updateFormData)
   });
 };
 
@@ -51,8 +51,8 @@ export const deleteUser = (userId, token) => {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `${token}`,
-    },
+      Authorization: `${token}`
+    }
   });
 };
 
@@ -62,9 +62,9 @@ export const createLink = (linkData, token) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `${token}`,
+      Authorization: `${token}`
     },
-    body: JSON.stringify(linkData),
+    body: JSON.stringify(linkData)
   });
 };
 
@@ -76,8 +76,8 @@ export const getAllLinks = (userId, token, currentPage) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `${token}`,
-      },
+        Authorization: `${token}`
+      }
     }
   );
 };
@@ -88,8 +88,8 @@ export const deleteLinkById = (linkId, token) => {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `${token}`,
-    },
+      Authorization: `${token}`
+    }
   });
 };
 
@@ -99,41 +99,44 @@ export const updateLink = (linkData, token, linkId) => {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `${token}`,
+      Authorization: `${token}`
     },
-    body: JSON.stringify(linkData),
+    body: JSON.stringify(linkData)
   });
 };
 
 // get link by id
-export const getLink = (linkId) => {
+export const getLink = (linkId, token) => {
   return fetch(`${apiURL}api/link/getLink?id=${linkId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-    },
+      Authorization: `${token}`
+    }
   });
 };
 
 // get all clicks
-export const getAllClicks = (userId, currentPage) => {
+export const getAllClicks = (userId, currentPage, token) => {
   return fetch(
     `${apiURL}api/link/getAllClicks?id=${userId}&page=${currentPage}`,
     {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-      },
+        Authorization: `${token}`
+      }
     }
   );
 };
 
 // get all clicks for dashboard
-export const getAllClicksForDashboard = (userId) => {
+export const getAllClicksForDashboard = (userId, token) => {
   return fetch(`${apiURL}api/link/getAllClicksForDashboard?id=${userId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-    },
+      Authorization: `${token}`
+    }
   });
 };

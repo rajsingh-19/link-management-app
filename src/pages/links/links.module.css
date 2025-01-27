@@ -158,7 +158,6 @@ table {
 }
 /*              pagination       */
 .paginationContainer {
-  width: 180px;
   height: 21px;
   bottom: 40px;
   position: absolute;
@@ -176,6 +175,8 @@ table {
   background-color: #ffffff;
   border: 0.66px solid #dfe3e8;
   cursor: pointer;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 /* Red background for disabled buttons */
 .disabledButton {

@@ -4,6 +4,7 @@ import styles from "./navbar.module.css";
 import sunIcon from "../../assets/sunIcon.png";
 import searchIcon from "../../assets/searchIcon.svg";
 import plusIcon from "../../assets/plusIcon.svg";
+import { IoMdMoon } from "react-icons/io";
 
 const Navbar = ({handleCreateLink}) => {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ const Navbar = ({handleCreateLink}) => {
   const [userName, setUserName] = useState("");
   const [shortName, setShortName] = useState("");
   const [currentDate, setCurrentDate] = useState("");
+  const [greeting, setGreeting] = useState("");
 
   useEffect(() => {
     const fetchUserName = () => {
@@ -26,8 +28,20 @@ const Navbar = ({handleCreateLink}) => {
       return today.toLocaleDateString("en-US", options);
     };
 
+    const setTimeBasedGreeting = () => {
+      const hours = new Date().getHours();
+      if (hours < 12) {
+        setGreeting("Good morning");
+      } else if (hours < 18) {
+        setGreeting("Good afternoon");
+      } else {
+        setGreeting("Good evening");
+      }
+    };
+
     fetchUserName();
     setCurrentDate(formatDate());
+    setTimeBasedGreeting(); 
   }, []);
 
   const handleNameClick = () => {
@@ -46,10 +60,14 @@ const Navbar = ({handleCreateLink}) => {
       {/*       left section     */}
       <div className={styles.greetContainer}>
         <div>
-          <img className={styles.sunIcon} src={sunIcon} alt="sun icon" />
+          {
+            greeting === "Good evening" ?
+            <IoMdMoon className={styles.moonIcon} /> :
+            <img className={styles.sunIcon} src={sunIcon} alt="sun icon" />
+          }
         </div>
         <div>
-          <p>Good morning, {userName}</p>
+          <p>{greeting}, {userName}</p>
           <p>{currentDate}</p>
         </div>
       </div>
