@@ -25,6 +25,7 @@ const Links = () => {
   const [totalItems, setTotalItems] = useState(0);
   const [isGroupedByStatus, setIsGroupedByStatus] = useState(false);
   const [originalLinkData, setOriginalLinkData] = useState([]);
+  const [editStatus, setEditStatus] = useState(false);
 
   useEffect(() => {
     const fetchLinksData = async () => {
@@ -120,6 +121,7 @@ const Links = () => {
 
   //      function to open the edit link modal
   const handleEditLink = (id) => {
+    setEditStatus(true);
     setLinkIdToEdit(id);
     setModalStatus(true); // Open the modal
   };
@@ -133,7 +135,9 @@ const Links = () => {
 
   //      function for open the create link
   const handleCreateLink = () => {
-    setModalStatus(true);
+    setEditStatus(false);
+    setLinkIdToEdit(null); 
+    setModalStatus(true); 
   };
 
   const handleCloseModal = () => {
@@ -319,11 +323,14 @@ const Links = () => {
       )
       }
       {/*             create link modal        */}
-      {modalStatus && (
+      {editStatus ? 
+        (modalStatus && (
         <div className={styles.modalViewContainer}>
           <LinkModal handleCloseModal={handleCloseModal} id={linkIdToEdit} />
-        </div>
-      )
+        </div>)) : 
+        (modalStatus && (<div className={styles.modalViewContainer}>
+          <LinkModal handleCloseModal={handleCloseModal} />
+        </div>))
       }
     </div>
   )
