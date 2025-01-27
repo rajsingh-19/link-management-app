@@ -238,14 +238,17 @@ const Links = () => {
                       <td className={styles.statusData}>
                         <span
                           className={
-                            link.linkExpiryDate && new Date(link.linkExpiryDate) > new Date()
+                            !link.linkExpiryDate || new Date(link.linkExpiryDate) > new Date()
                               ? styles.activeStatus
                               : styles.inactiveStatus
                           }
                         >
                           {
-                            link.linkExpiryDate && new Date(link.linkExpiryDate) > new Date()
-                              ? "Active" : "Inactive"
+                            !link.linkExpiryDate
+                            ? "Active"
+                            : new Date(link.linkExpiryDate) > new Date()
+                              ? "Active"
+                              : "Inactive"
                           }
                         </span>
                       </td>
