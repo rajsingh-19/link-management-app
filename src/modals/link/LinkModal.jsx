@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from "./linkmodal.module.css";
+import styles from "./link.module.css";
 import crossWhite from '../../assets/crossWhite.svg';
 import Switch from "react-switch";
 import { toast } from 'react-toastify';

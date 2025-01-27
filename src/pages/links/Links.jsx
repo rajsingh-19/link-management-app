@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from "./links.module.css";
 import Navbar from '../../components/navbar/Navbar';
 import Sidebar from '../../components/sidebar/Sidebar';
-import ConfirmCard from "../../modals/card/ConfirmCard";
+import ConfirmCard from "../../modals/confirmcard/ConfirmCard";
 import LinkModal from "../../modals/link/LinkModal";
 import { getAllLinks, deleteLinkById } from '../../services/index';
 import sortingIcon from "../../assets/sortingIcon.svg";

@@ -5,7 +5,7 @@ import { getUserInfo, updateUser, deleteUser } from "../../services/index";
 import Navbar from "../../components/navbar/Navbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import LinkModal from "../../modals/link/LinkModal";
-import ConfirmCard from "../../modals/card/ConfirmCard";
+import ConfirmCard from "../../modals/confirmcard/ConfirmCard";
 import { toast } from "react-toastify";
 
 const Settings = () => {
