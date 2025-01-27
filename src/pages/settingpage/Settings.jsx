@@ -4,7 +4,8 @@ import styles from "./settings.module.css";
 import { getUserInfo, updateUser, deleteUser } from "../../services/index";
 import Navbar from "../../components/navbar/Navbar";
 import Sidebar from "../../components/sidebar/Sidebar";
-import ConfirmCard from "../../modals/confirmcard/ConfirmCard";
+import LinkModal from "../../modals/link/LinkModal";
+import ConfirmCard from "../../modals/card/ConfirmCard";
 import { toast } from "react-toastify";
 
 const Settings = () => {
@@ -16,6 +17,7 @@ const Settings = () => {
   });
   const [errors, setErrors] = useState({});
   const [modalStatus, setModalStatus] = useState(false);
+  const [confirmModalStatus, setConfirmModalStatus] = useState(false);  
   const [isDeleting, setIsDeleting] = useState(false); // Track deletion status
 
   useEffect(() => {  
@@ -118,14 +120,24 @@ const Settings = () => {
     }
   };
 
-  //      function for opening the modal
-  const handleDeleteConfirm = () => {
+  //      function for open the create link
+  const handleCreateLink = () => {
     setModalStatus(true);
   };
-
+  
   //      function for closing the modal
   const handleCloseModal = (e) => {
     setModalStatus(false);
+  };
+
+  //      function for opening the modal
+  const handleDeleteConfirm = () => {
+    setConfirmModalStatus(true);
+  };
+
+  //      function for closing the modal
+  const handleConfirmCloseModal = (e) => {
+    setConfirmModalStatus(false);
   };
 
   //               Function to handle user deletion
@@ -142,10 +154,7 @@ const Settings = () => {
     try {
       const res = await deleteUser(userId, token); 
 
-      console.log(res);
       if (res.status === 200) {
-        
-        console.log(res);
 
         // Clear localStorage and navigate to the login page immediately
         localStorage.removeItem('userId');
@@ -173,7 +182,7 @@ const Settings = () => {
       </div>
       <div className={styles.pageSection}>
         <div className={styles.navContainer}>
-          <Navbar />
+          <Navbar handleCreateLink={handleCreateLink} />
         </div>
         <div className={styles.contentContainer}>
           {/*     Form for user login     */}
@@ -234,11 +243,18 @@ const Settings = () => {
         </div>
       </div>
       {/*             Modal Container          */}
-        {modalStatus && (
-          <div className={styles.modalViewContainer}>
-            <ConfirmCard handleAction={handleAccountDelete} handleCloseModal={handleCloseModal} label={"delete"} />
+        {confirmModalStatus && (
+          <div className={styles.confirmModalViewContainer}>
+            <ConfirmCard handleAction={handleAccountDelete} handleCloseModal={handleConfirmCloseModal} label={"delete the account ?"} />
           </div>
         )
+      }
+      {/*             create link modal        */}
+      {modalStatus && (
+        <div className={styles.modalViewContainer}>
+          <LinkModal handleCloseModal={handleCloseModal} />
+        </div>
+      )
       }
     </div>
   );

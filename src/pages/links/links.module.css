@@ -1,23 +1,239 @@
-.dashboardContainer {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
+.linkContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
 }
 .sidebarSection {
-    width: 20%;
-    height: 100vh;
+  width: 20%;
+  height: 100vh;
 }
 .pageSection {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
 }
 .navContainer {
-    width: 100%;
-    height: 10%;
+  width: 100%;
+  height: 10%;
 }
 .contentContainer {
-    width: 100%;
-    height: 90%;
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/*          link table      */
+table {
+  border-collapse: collapse; /* Ensures no space between table cells */
+  table-layout: fixed;
+}
+.linkTable {
+  /* width: 96%; */
+  width: 916px;
+  border-radius: 12px;
+  margin-top: 20px;
+  box-shadow: 0px 4px 4px 0px #0000000a;
+}
+.linkTable thead {
+  height: 62px;
+  background-color: #f3f7fd;
+}
+.linkTable thead > tr th {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21.86px;
+  color: #3b3c51;
+}
+.dateHeading {
+  width: 147px;
+}
+.originalHeading,
+.shortHeading,
+.remarkHeading {
+  width: 134px;
+}
+.clicksHeading {
+  width: 87px;
+}
+.statusHeading,
+.actionHeading {
+  width: 140px;
+}
+.dateHeading span,
+.statusHeading span {
+  margin-right: 30px;
+}
+.sortingIcon {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+.linkTable tbody {
+  background-color: #ffffff;
+}
+.linkTable tbody tr td {
+  border: 0.5px solid #f8f8f8;
+  text-align: center;
+}
+.dateData {
+  width: 147px;
+  height: 58px;
+}
+.shortenData,
+.remarkData {
+  width: 134px;
+  height: 58px;
+}
+.originalData {
+  width: 134px;
+  height: 58px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+}
+.shortentData {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+  position: relative;
+}
+.shortentData span {
+  display: inline-block;
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.shortenData > img {
+  margin-left: 10px;
+  max-width: 20px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.clicksData {
+  width: 87px;
+  height: 58px;
+}
+.statusData,
+.actionData {
+  width: 140px;
+  height: 58px;
+}
+/*          active and inactive  */
+.activeStatus {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1eb036; /* Active will be shown in green */
+}
+.inactiveStatus {
+  font-size: 14px;
+  font-weight: 500;
+  color: #b0901e; /* Inactive will be shown in brown */
+}
+.actionData {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.actionData button:first-of-type {
+  margin-right: 10px;
+}
+.tableDataIconsBtn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.linkTable tbody tr td {
+  font-size: 14px;
+  font-weight: 500;
+  color: #3b3c51;
+}
+/*              pagination       */
+.paginationContainer {
+  width: 180px;
+  height: 21px;
+  bottom: 40px;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.paginationContainer button {
+  width: 21px;
+  height: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: "Inter";
+  border-radius: 2.63px;
+  background-color: #ffffff;
+  border: 0.66px solid #dfe3e8;
+  cursor: pointer;
+}
+/* Red background for disabled buttons */
+.disabledButton {
+  color: #c4cdd5;
+  background-color: #919eab;
+  cursor: not-allowed;
+}
+.activeButton {
+  color: blue;
+  background-color: #ffffff;
+  border: 0.66px solid #4200ff !important;
+}
+
+/*      copied link btn      */
+.copiedLinkBtn {
+  width: 215px;
+  height: 42px;
+  left: 7.5%;
+  bottom: 4%;
+  position: absolute;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 19px;
+  color: #000000;
+  background-color: #ffffff;
+  border: 1px solid #1b48da;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+.tickIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.copiedLinkBtn button span {
+  margin-left: 10px;
+}
+/*          modal view container        */
+.confirmModalViewContainer,
+.modalViewContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.confirmModalViewContainer {
+  background: rgba(0, 0, 0, 0.5);
+}
+.modalViewContainer {
+  background: rgba(0, 0, 0, 0.1);
 }

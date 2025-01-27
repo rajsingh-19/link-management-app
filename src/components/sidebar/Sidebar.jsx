@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, useLocation } from "react-router-dom"
 import styles from "./sidebar.module.css";
 import cuvetteIcon from "../../assets/cuvetteIcon.svg";
-import dashboardIcon from "../../assets/dashIcon.svg";
+import dashboardIcon from "../../assets/dashboardIcon.svg";
 import linkIcon from "../../assets/link.svg";
 import analyticsIcon from "../../assets/analytics.svg";
 import settingIcon from "../../assets/setting.svg";
@@ -40,24 +40,32 @@ const Sidebar = () => {
         </div>
         {/*         navigation container         */}
         <div className={styles.navigationContainer}>
-            <div className={`${styles.navItem} ${isActive('/dashboard') ? styles.active : ''}`}>
+            <div className={`${isActive('/dashboard') ? styles.active : ''}`}>
                 <img src={dashboardIcon} alt="dashboard icon" />
-                <button onClick={handleDashboard}>Dashboard</button>
+                <button onClick={handleDashboard}>
+                    <span>Dashboard</span>
+                </button>
             </div>
-            <div className={`${styles.navItem} ${isActive('/links') ? styles.active : ''}`}>
+            <div className={`${isActive('/links') ? styles.active : ''}`}>
                 <img src={linkIcon} alt="link icon" />
-                <button onClick={handlelinks}>Links</button>
+                <button onClick={handlelinks}>
+                    <span>Links</span>
+                </button>
             </div>
-            <div className={`${styles.navItem} ${isActive('/analytics') ? styles.active : ''}`}>
+            <div className={`${isActive('/analytics') ? styles.active : ''}`}>
                 <img src={analyticsIcon} alt="analytics icon" />
-                <button onClick={handleAnalytics}>Analytics</button>
+                <button onClick={handleAnalytics}>
+                    <span>Analytics</span>
+                </button>
             </div>
         </div>
         {/*         setting container            */}
         <div className={styles.settingContainer}>
             <div className={`${isActive('/settings') ? styles.active : ''}`}>
                 <img src={settingIcon} alt="setting icon" />
-                <button onClick={handleSettings}>Settings</button>
+                <button onClick={handleSettings}>
+                    <span>Settings</span>
+                </button>
             </div>
         </div>
     </div>

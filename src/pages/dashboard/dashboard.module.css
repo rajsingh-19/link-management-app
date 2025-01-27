@@ -80,11 +80,10 @@
     align-items: center;
     margin-bottom: 8px;
 }
-.datewiseContainer > div span:first-of-type {
+/* .datewiseContainer > div span:first-of-type {
     width: 75px;
-}
+} */
 .datewiseContainer > div span:last-of-type {
-    width: 45px;
     display: flex;
     flex-direction: row-reverse;
 }
@@ -115,13 +114,6 @@
     background-color: blue;
 }
 
-
-
-
-
-
-
-
 /*          modal view container        */
 .modalViewContainer {
     position: fixed;
@@ -129,7 +121,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: row;
     justify-content: center;

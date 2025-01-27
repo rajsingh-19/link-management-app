@@ -37,6 +37,7 @@
 }
 .navigationContainer div img {
     margin-right: 5px;
+    transition: color 0.3s;
 }
 .navigationContainer div button {
     font-weight: 600;
@@ -45,12 +46,7 @@
     border: none;
     background: transparent;
     cursor: pointer;
-}
-.navigationContainer div:first-child > button {
-    color: #1B48DA;
-    border: none;
-    background: transparent;
-    cursor: pointer;
+    transition: color 0.3s;
 }
 .settingContainer {
     display: flex;
@@ -72,6 +68,7 @@
 }
 .settingContainer div img {
     margin-right: 5px;
+    transition: color 0.3s;
 }
 .settingContainer div button {
     font-weight: 600;
@@ -80,9 +77,18 @@
     border: none;
     background: transparent;
     cursor: pointer;
+    transition: color 0.3s;
 }
 /* Active button styles */
 .active {
     background-color: #EFF6FF;
     border-radius: 8px;
+}
+/* Change SVG color */
+.active img {
+    filter: invert(23%) sepia(65%) saturate(800%) hue-rotate(200deg) brightness(95%) contrast(100%);
+}
+/* Change button text color */
+.active button span {
+    color: #1B48DA;
 }

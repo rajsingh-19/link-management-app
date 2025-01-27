@@ -1,4 +1,4 @@
-.dashboardContainer {
+.analyticsContainer {
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -20,4 +20,106 @@
 .contentContainer {
     width: 100%;
     height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/*          link table      */
+table {
+    border-collapse: collapse; /* Ensures no space between table cells */
+    table-layout: fixed; 
+}
+.linkTable {
+    width: 96%;
+    border-radius: 12px;
+    margin-top: 20px;
+    box-shadow: 0px 4px 4px 0px #0000000A;
+}
+.linkTable thead {
+    height: 62px;
+    background-color: #F3F7FD;
+}
+.linkTable thead > tr th {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 21.86px;
+    color: #3B3C51;
+}
+.timeStampHead, .timeStampData {
+    width: 16%;
+}
+.originalHead, .originalData, .shortenHead, .shortenData {
+    width: 27%;
+}
+.ipHead, .ipAddData, .deviceHead, .userDeviceData { 
+    width: 15%;
+}
+.timeStampHead span {
+    margin-right: 20px;
+}
+.sortingIcon {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.linkTable tbody tr td {
+    border: 0.5px solid #F8F8F8;
+    text-align: center;
+    height: 58px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #3B3C51;
+    line-height: 19.12px;
+}
+
+/*              pagination       */
+.paginationContainer {
+    width: 180px;
+    height: 21px;
+    bottom: 40px;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.paginationContainer button {
+    width: 21px;
+    height: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: "Inter";
+    border-radius: 2.63px;
+    background-color: #FFFFFF;
+    border: 0.66px solid #DFE3E8;
+    cursor: pointer;
+}
+/* Red background for disabled buttons */
+.disabledButton {
+    color: #C4CDD5;
+    background-color: #919EAB;
+    cursor: not-allowed;
+} 
+.activeButton {
+    color: blue;
+    background-color: #FFFFFF;
+    border: 0.66px solid #4200FF !important;
+}
+
+/*          modal view container        */
+.modalViewContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
