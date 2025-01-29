@@ -127,3 +127,112 @@
 .errorMessage:empty {
     visibility: hidden;
 }
+
+/*              responsiveness              */
+/* Mobile devices (320px to 426px) */
+@media screen and (max-width: 426px) {
+    .imgContainer {
+        display: none;
+    }
+    .loginSection {
+        width: 100%;
+        padding: 20px;
+    }
+    .btnsNav {
+        margin-bottom: 40px;
+    }
+    .btnsNav button {
+        width: 100%;
+        max-width: 80px;
+        margin-left: 15px;
+    }
+    .loginHeading {
+        width: 100%;
+        font-size: 18px;
+        margin-bottom: 50px;
+    }
+    .loginForm {
+        width: 100%;
+    }
+    .loginBtn {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    .bottomLine > span:first-of-type {
+        font-size: 14px;
+    }
+    .clickable {
+        font-size: 14px;
+    }
+    .errorMessage {
+        font-size: 14px;
+    }
+}
+/* Tablets (426px to 768px) */
+@media screen and (min-width: 426px) and (max-width: 768px) {
+    .imgContainer {
+        display: none;
+    }
+    .loginSection {
+        width: 100%;
+        padding: 30px;
+    }
+    .btnsNav {
+        margin-bottom: 50px;
+    }
+    .btnsNav button {
+        width: 100%;
+        max-width: 80px;
+        margin-left: 15px;
+    }
+    .loginHeading {
+        width: 90%;
+        font-size: 20px;
+        margin-bottom: 65px;
+    }
+    .loginForm {
+        width: 90%;
+    }
+    .loginBtn {
+        font-size: 15px;
+        margin-bottom: 25px;
+    }
+    .bottomLine {
+        font-size: 15px;
+    }
+    .clickable {
+        font-size: 15px;
+    }
+    .errorMessage {
+        font-size: 15px;
+    }
+}
+/* Desktops (769px to 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .imgContainer {
+        width: 40%;
+        height: 100vh;
+    }
+    .loginSection {
+        width: 60%;
+        padding: 40px;
+    }
+    .btnsNav {
+        justify-content: end;
+        margin-bottom: 60px;
+    }
+    .btnsNav button {
+        width: 90px;
+    }
+    .loginHeading {
+        width: 85%;
+        font-size: 22px;
+        margin-bottom: 90px;
+    }
+    .loginForm {
+        width: 85%;
+    }
+    .loginBtn {
+        font-size: 16px;
+    }
+}

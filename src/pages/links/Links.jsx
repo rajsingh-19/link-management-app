@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from "./links.module.css";
 import Navbar from '../../components/navbar/Navbar';
 import Sidebar from '../../components/sidebar/Sidebar';
-import ConfirmCard from "../../modals/confirmcard/ConfirmCard";
+import ConfirmCard from "../../modals/card/ConfirmCard";
 import LinkModal from "../../modals/link/LinkModal";
 import { getAllLinks, deleteLinkById } from '../../services/index';
 import sortingIcon from "../../assets/sortingIcon.svg";
@@ -39,7 +39,7 @@ const Links = () => {
           const data = await res.json();
           const linkArr = data.result;
 
-          const { totalItems } = data; 
+          const { totalItems } = data;
 
           // Set total items and calculate total pages
           setTotalItems(totalItems);
@@ -136,8 +136,8 @@ const Links = () => {
   //      function for open the create link
   const handleCreateLink = () => {
     setEditStatus(false);
-    setLinkIdToEdit(null); 
-    setModalStatus(true); 
+    setLinkIdToEdit(null);
+    setModalStatus(true);
   };
 
   const handleCloseModal = () => {
@@ -196,7 +196,7 @@ const Links = () => {
       </div>
       <div className={styles.pageSection}>
         <div className={styles.navContainer}>
-          <Navbar handleCreateLink={handleCreateLink} />
+          <Navbar handleCreateLink={handleCreateLink} setLinkData={setLinkData} />
         </div>
         <div className={styles.contentContainer}>
           <table className={styles.linkTable}>
@@ -249,10 +249,10 @@ const Links = () => {
                         >
                           {
                             !link.linkExpiryDate
-                            ? "Active"
-                            : new Date(link.linkExpiryDate) > new Date()
                               ? "Active"
-                              : "Inactive"
+                              : new Date(link.linkExpiryDate) > new Date()
+                                ? "Active"
+                                : "Inactive"
                           }
                         </span>
                       </td>
@@ -323,11 +323,11 @@ const Links = () => {
       )
       }
       {/*             create link modal        */}
-      {editStatus ? 
+      {editStatus ?
         (modalStatus && (
-        <div className={styles.modalViewContainer}>
-          <LinkModal handleCloseModal={handleCloseModal} id={linkIdToEdit} />
-        </div>)) : 
+          <div className={styles.modalViewContainer}>
+            <LinkModal handleCloseModal={handleCloseModal} id={linkIdToEdit} />
+          </div>)) :
         (modalStatus && (<div className={styles.modalViewContainer}>
           <LinkModal handleCloseModal={handleCloseModal} />
         </div>))

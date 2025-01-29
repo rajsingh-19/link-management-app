@@ -25,123 +25,109 @@
   align-items: center;
   position: relative;
 }
-
 /*          link table      */
 table {
   border-collapse: collapse; /* Ensures no space between table cells */
-  table-layout: fixed;
+  table-layout: fixed; 
 }
 .linkTable {
-  /* width: 96%; */
-  width: 916px;
+  width: 96%;
   border-radius: 12px;
   margin-top: 20px;
-  box-shadow: 0px 4px 4px 0px #0000000a;
+  box-shadow: 0px 4px 4px 0px #0000000A;
 }
 .linkTable thead {
   height: 62px;
-  background-color: #f3f7fd;
+  background-color: #F3F7FD;
 }
 .linkTable thead > tr th {
   font-size: 16px;
   font-weight: 600;
   line-height: 21.86px;
-  color: #3b3c51;
+  color: #3B3C51;
 }
 .dateHeading {
-  width: 147px;
+  width: 16%;
 }
-.originalHeading,
-.shortHeading,
-.remarkHeading {
-  width: 134px;
+.originalHeading, .shortHeading, .remarkHeading {
+  width: 14.5%;
 }
 .clicksHeading {
-  width: 87px;
+  width: 9.5%;
 }
-.statusHeading,
-.actionHeading {
-  width: 140px;
+.statusHeading, .actionHeading {
+  width: 15.5%;
 }
-.dateHeading span,
-.statusHeading span {
+.dateHeading span, .statusHeading span {
   margin-right: 30px;
-}
+}   
 .sortingIcon {
   cursor: pointer;
   border: none;
   background-color: transparent;
 }
 .linkTable tbody {
-  background-color: #ffffff;
+  background-color: #FFFFFF;
 }
 .linkTable tbody tr td {
-  border: 0.5px solid #f8f8f8;
+  border: 0.5px solid #F8F8F8;
   text-align: center;
 }
 .dateData {
-  width: 147px;
+  width: 16%;
   height: 58px;
 }
-.shortenData,
-.remarkData {
-  width: 134px;
+.shortenData, .remarkData {
+  width: 14.5%;
   height: 58px;
 }
 .originalData {
-  width: 134px;
+  width: 14.5%;
   height: 58px;
-  white-space: nowrap;
+  white-space: nowrap;  
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; 
   box-sizing: border-box;
 }
 .shortentData {
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100px;
-  position: relative;
+  text-overflow: ellipsis; 
+  max-width: 100%;  
+  position: relative; 
 }
 .shortentData span {
-  display: inline-block;
-  max-width: 80%;
-  overflow: hidden;
-  text-overflow: ellipsis;
+display: inline-block;
+max-width: 80%;
+overflow: hidden;
+text-overflow: ellipsis;
 }
 .shortenData > img {
   margin-left: 10px;
-  max-width: 20px;
+  max-width: 15%;
   position: absolute;
-  right: 0;
+  right: 0; 
   top: 50%;
   transform: translateY(-50%);
 }
 .clicksData {
-  width: 87px;
+  width: 9.5%;
   height: 58px;
 }
-.statusData,
-.actionData {
-  width: 140px;
+.statusData, .actionData {
+  width: 15.5%;
   height: 58px;
 }
 /*          active and inactive  */
 .activeStatus {
   font-size: 14px;
   font-weight: 500;
-  color: #1eb036; /* Active will be shown in green */
-}
+  color: #1EB036; /* Active will be shown in green */
+}  
 .inactiveStatus {
   font-size: 14px;
   font-weight: 500;
-  color: #b0901e; /* Inactive will be shown in brown */
-}
-.actionData {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  color: #B0901E; /* Inactive will be shown in brown */
 }
 .actionData button:first-of-type {
   margin-right: 10px;
@@ -154,7 +140,7 @@ table {
 .linkTable tbody tr td {
   font-size: 14px;
   font-weight: 500;
-  color: #3b3c51;
+  color: #3B3C51;
 }
 /*              pagination       */
 .paginationContainer {
@@ -172,25 +158,25 @@ table {
   font-weight: 700;
   font-family: "Inter";
   border-radius: 2.63px;
-  background-color: #ffffff;
-  border: 0.66px solid #dfe3e8;
+  background-color: #FFFFFF;
+  border: 0.66px solid #DFE3E8;
   cursor: pointer;
   margin-left: 2px;
   margin-right: 2px;
 }
 /* Red background for disabled buttons */
 .disabledButton {
-  color: #c4cdd5;
-  background-color: #919eab;
+  color: #C4CDD5;
+  background-color: #919EAB;
   cursor: not-allowed;
-}
+} 
 .activeButton {
   color: blue;
-  background-color: #ffffff;
-  border: 0.66px solid #4200ff !important;
+  background-color: #FFFFFF;
+  border: 0.66px solid #4200FF !important;
 }
 
-/*      copied link btn      */
+/*      copied link btn      */ 
 .copiedLinkBtn {
   width: 215px;
   height: 42px;
@@ -201,8 +187,8 @@ table {
   font-weight: 600;
   line-height: 19px;
   color: #000000;
-  background-color: #ffffff;
-  border: 1px solid #1b48da;
+  background-color: #FFFFFF;
+  border: 1px solid #1B48DA;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -218,8 +204,7 @@ table {
   margin-left: 10px;
 }
 /*          modal view container        */
-.confirmModalViewContainer,
-.modalViewContainer {
+.confirmModalViewContainer, .modalViewContainer {
   position: fixed;
   top: 0;
   left: 0;

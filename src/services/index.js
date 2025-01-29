@@ -140,3 +140,17 @@ export const getAllClicksForDashboard = (userId, token) => {
     }
   });
 };
+
+// search
+export const searchByRemarks = (userId, token, remarks, page) => {
+  return fetch(
+    `${apiURL}api/link/search?id=${userId}&page=${page}&remarks=${remarks}`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `${token}`,
+      },
+    }
+  );
+};

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from "./link.module.css";
+import styles from "./linkmodal.module.css";
 import crossWhite from '../../assets/crossWhite.svg';
 import Switch from "react-switch";
 import { toast } from 'react-toastify';
@@ -172,21 +172,27 @@ const LinkModal = ({ handleCloseModal, id }) => {
         <img src={crossWhite} alt="" onClick={handleCloseModal} style={{ cursor: 'pointer' }} />
       </div>
       <div className={styles.secondSection}>
-        <div className={styles.inputBox}>
+        <div className={styles.urlContainer}>
           <div className={styles.label}>Destination Url <span style={{ color: 'red' }}>*</span></div>
           <div>
             <input type="text" className={styles.input} onChange={handleChange} value={linkFormData.originalUrl} name='originalUrl' placeholder='https://web.whatsapp.com/' />
-            {errors.originalUrl && <div className={styles.errorMessage}>{errors.originalUrl}</div>}
+            <div className={styles.errorContainer}>
+              {errors.originalUrl ? ( <p className={styles.errorMessage}>{errors.originalUrl}</p>) :
+              (<p className={styles.errorMessage}>&nbsp;</p>)}
+            </div>
           </div>
         </div>
-        <div className={styles.inputBox}>
+        <div className={styles.remarksContainer}>
           <div className={styles.label}>Remarks <span style={{ color: 'red' }}>*</span></div>
           <div>
-            <textarea name="remarks" id="remarks" className={styles.input} onChange={handleChange} value={linkFormData.remarks} placeholder='Add Remarks' rows={6}></textarea>
-            {errors.remarks && <div className={styles.errorMessage}>{errors.remarks}</div>}
+            <textarea name="remarks" id="remarks" className={styles.textarea} onChange={handleChange} value={linkFormData.remarks} placeholder='Add Remarks' rows={6}></textarea>
+            <div className={styles.errorContainer}>
+              {errors.remarks ? ( <p className={styles.errorMessage}>{errors.remarks}</p>) :
+              (<p className={styles.errorMessage}>&nbsp;</p>)}
+            </div>
           </div>
         </div>
-        <div className={styles.inputBox}>
+        <div className={styles.linkExpireContainer}>
           <div className={styles.toggleBox}>
             <div className={styles.label}>Link Expiration</div>
             <Switch onChange={handleExpiry} checked={isExpiry} offColor='#B1B1B1' onColor='#1A5FFF' uncheckedIcon={false} checkedIcon={false} height={25} />
@@ -199,10 +205,13 @@ const LinkModal = ({ handleCloseModal, id }) => {
                 showTimeSelect
                 dateFormat="MMM d, yyyy, h:mm aa"
                 placeholderText="Select date and time"
-                className={styles.input}
+                className={styles.showDate}
               />
             )}
-            {errors.linkExpiryDate && <div className={styles.errorMessage}>{errors.linkExpiryDate}</div>}
+            <div className={styles.errorContainer}>
+              {errors.linkExpiryDate ? ( <p className={styles.errorMessage}>{errors.linkExpiryDate}</p>) :
+              (<p className={styles.errorMessage}>&nbsp;</p>)}
+            </div>
           </div>
         </div>
       </div>

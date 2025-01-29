@@ -5,14 +5,19 @@ import sunIcon from "../../assets/sunIcon.png";
 import searchIcon from "../../assets/searchIcon.svg";
 import plusIcon from "../../assets/plusIcon.svg";
 import { IoMdMoon } from "react-icons/io";
+import { searchByRemarks } from "../../services";
+import { toast } from 'react-toastify';
 
-const Navbar = ({handleCreateLink}) => {
+const Navbar = ({ handleCreateLink, setLinkData }) => {
   const navigate = useNavigate();
   const [activeLogout, setActiveLogout] = useState(false);
   const [userName, setUserName] = useState("");
   const [shortName, setShortName] = useState("");
   const [currentDate, setCurrentDate] = useState("");
   const [greeting, setGreeting] = useState("");
+  const url = window.location.href;
+  const lastPart = url.split("/").pop();
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     const fetchUserName = () => {
@@ -55,6 +60,36 @@ const Navbar = ({handleCreateLink}) => {
     navigate('/');
   };
 
+  const handleChange = async (event) => {
+    const value = event.target.value;
+    setSearchText(value);
+
+    if (lastPart === "links") {
+      if (value === '') {
+        window.location.reload();
+      } else {
+        const userId = localStorage.getItem("userId");
+        const token = localStorage.getItem("token");
+
+        try {
+          const result = await searchByRemarks(userId, token, value);
+          if (result.status === 200) {
+            const data = await result.json();
+
+            setLinkData(data.result);
+          } else {
+            setLinkData([]);
+          }
+        } catch (error) {
+          console.error(error);
+          toast.error("An unexpected error occurred.");
+        };
+      }
+    } else if (lastPart !== "links") {
+      navigate("/links");
+    }
+  };
+
   return (
     <nav className={styles.navContainer}>
       {/*       left section     */}
@@ -81,7 +116,7 @@ const Navbar = ({handleCreateLink}) => {
         </div>
         <div>
           <img src={searchIcon} alt="search icon" />
-          <input type="text" placeholder="Search by remarks" />
+          <input type="text" placeholder="Search by remarks" value={searchText} onChange={handleChange} />
         </div>
         <div>
           <button onClick={handleNameClick}>{shortName}</button>

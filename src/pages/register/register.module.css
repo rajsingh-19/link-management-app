@@ -101,7 +101,7 @@
     border-radius: 6px;
     margin-bottom: 30px;
 }
-.bottomLIne {
+.bottomLine {
     font-size: 16px;
     font-weight: 600;
     color: #3B3C51;
@@ -126,4 +126,114 @@
 }
 .errorMessage:empty {
     visibility: hidden;
+}
+
+/*              responsiveness              */
+/* Mobile devices (320px to 426px) */
+@media screen and (max-width: 426px) {
+    .imgContainer {
+        display: none;
+    }
+    .registerSection {
+        width: 100%;
+        padding: 20px;
+    }
+    .btnsNav {
+        margin-bottom: 40px;
+    }
+    .btnsNav button {
+        width: 100%;
+        max-width: 80px;
+        margin-left: 15px;
+    }
+    .registerHeading {
+        width: 100%;
+        font-size: 18px;
+        margin-bottom: 40px;
+    }
+    .registerForm {
+        width: 100%;
+    }
+    .loginBtn {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    .bottomLine > span:first-of-type {
+        font-size: 14px;
+    }
+    .clickable {
+        font-size: 14px;
+    }
+    .errorMessage {
+        font-size: 14px;
+    }
+}
+/* Tablets (426px to 768px) */
+@media screen and (min-width: 426px) and (max-width: 768px) {
+    .imgContainer {
+        display: none;
+    }
+    .registerSection {
+        width: 100%;
+        padding: 30px;
+    }
+    .btnsNav {
+        margin-bottom: 50px;
+    }
+    .btnsNav button {
+        width: 100%;
+        max-width: 80px;
+        margin-left: 15px;
+    }
+    .registerHeading {
+        width: 90%;
+        font-size: 20px;
+        margin-bottom: 65px;
+    }
+    .registerForm {
+        width: 90%;
+    }
+    .loginBtn {
+        font-size: 15px;
+        margin-bottom: 25px;
+    }
+    .bottomLine {
+        font-size: 15px;
+    }
+    .clickable {
+        font-size: 15px;
+    }
+    .errorMessage {
+        font-size: 15px;
+    }
+}
+/* Desktops (769px to 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .imgContainer {
+        width: 45%;
+        height: 100vh;
+    }
+    .resgisterSection {
+        width: 55%;
+        padding: 40px;
+    }
+    .btnsNav {
+        justify-content: end;
+        margin-bottom: 60px;
+    }
+    .btnsNav button {
+        width: 100%;
+        max-width: 80px;
+        margin-left: 15px;
+    }
+    .registerHeading {
+        width: 100%;
+        font-size: 22px;
+    }
+    .registerForm {
+        width: 100%;
+    }
+    .loginBtn {
+        font-size: 16px;
+    }
 }

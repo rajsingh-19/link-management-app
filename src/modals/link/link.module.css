@@ -1,11 +1,11 @@
 .container {
     width: 34rem;
-    height: max-content;
     border-top-left-radius: 0.75rem;
     border-bottom-left-radius: 0.75rem;
 }
 .firstSection {
     width: 100%;
+    height: 55px;
     background: #3B3C51;
     display: flex;
     align-items: center;
@@ -23,16 +23,27 @@
 }
 .secondSection {
     width: 100%;
+    height: 600px;
     background: #FFFFFF;
     padding: 1.25rem 1.25rem 16.375rem 1.25rem;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 0.25rem;
 }
-.inputBox {
+.urlContainer, .remarksContainer, .linkExpireContainer {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.5rem;
+}
+.urlContainer {
+    height: 100px;
+}
+.remarksContainer {
+    height: 194px;
+}
+.linkExpireContainer {
+    height: 80px;
+    margin-top: 10px;
 }
 .label {
     font-family: Manrope;
@@ -48,9 +59,41 @@
     width: 100%;
     padding: 8px 0px 8px 12px;
     border-radius: 4px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #3B3C51;
     border: 1px solid #D1D5DB;
+    margin-bottom: 2px;
+}
+.textarea {
+    width: 100%;
+    padding: 8px 0px 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #D1D5DB;
+    outline: none;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Manrope;
+    color: #3B3C51;
+}
+.showDate {
+    color: #343446;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Manrope;
+    outline: none;
+    width: 100%;
+    padding: 8px 0px 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #D1D5DB;
+    margin-bottom: 2px;
+}
+.errorContainer {
+    width: 100%;
+    margin-top: 5px;
 }
 .errorMessage {
+    height: 20px;
     font-family: Manrope;
     font-size: 12px;
     font-weight: 400;
@@ -60,6 +103,10 @@
     text-decoration-skip-ink: none;
     color: #FF0101;
 }
+.errorMessage:empty {
+    visibility: hidden;
+}
+
 .input:focus {
     outline: none;
 }
@@ -79,6 +126,7 @@
     justify-content: space-between;
 }
 .thirdSection {
+    height: 66px;
     background: #3B3C511A;
     display: flex;
     align-items: center;

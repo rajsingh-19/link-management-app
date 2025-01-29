@@ -104,7 +104,9 @@ const Dashboard = () => {
         <Sidebar />
       </div>
       <div className={styles.pageSection}>
-        <Navbar handleCreateLink={handleCreateLink} />
+        <div className={styles.navContainer}>
+          <Navbar handleCreateLink={handleCreateLink} />
+        </div>
         <div className={styles.contentContainer}>
           {
             data && (
