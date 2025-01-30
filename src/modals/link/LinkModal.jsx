@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import styles from "./linkmodal.module.css";
+import styles from "./link.module.css";
 import crossWhite from '../../assets/crossWhite.svg';
+import date from '../../assets/date.svg';
 import Switch from "react-switch";
 import { toast } from 'react-toastify';
 import { createLink, getLink, updateLink } from '../../services';
@@ -177,8 +178,8 @@ const LinkModal = ({ handleCloseModal, id }) => {
           <div>
             <input type="text" className={styles.input} onChange={handleChange} value={linkFormData.originalUrl} name='originalUrl' placeholder='https://web.whatsapp.com/' />
             <div className={styles.errorContainer}>
-              {errors.originalUrl ? ( <p className={styles.errorMessage}>{errors.originalUrl}</p>) :
-              (<p className={styles.errorMessage}>&nbsp;</p>)}
+              {errors.originalUrl ? (<p className={styles.errorMessage}>{errors.originalUrl}</p>) :
+                (<p className={styles.errorMessage}>&nbsp;</p>)}
             </div>
           </div>
         </div>
@@ -187,8 +188,8 @@ const LinkModal = ({ handleCloseModal, id }) => {
           <div>
             <textarea name="remarks" id="remarks" className={styles.textarea} onChange={handleChange} value={linkFormData.remarks} placeholder='Add Remarks' rows={6}></textarea>
             <div className={styles.errorContainer}>
-              {errors.remarks ? ( <p className={styles.errorMessage}>{errors.remarks}</p>) :
-              (<p className={styles.errorMessage}>&nbsp;</p>)}
+              {errors.remarks ? (<p className={styles.errorMessage}>{errors.remarks}</p>) :
+                (<p className={styles.errorMessage}>&nbsp;</p>)}
             </div>
           </div>
         </div>
@@ -199,18 +200,21 @@ const LinkModal = ({ handleCloseModal, id }) => {
           </div>
           <div style={{ width: '100%' }}>
             {isExpiry && (
-              <DatePicker
-                selected={linkFormData.linkExpiryDate}
-                onChange={(date) => setLinkFormData({ ...linkFormData, linkExpiryDate: date })}
-                showTimeSelect
-                dateFormat="MMM d, yyyy, h:mm aa"
-                placeholderText="Select date and time"
-                className={styles.showDate}
-              />
+              <div style={{ position: 'relative' }}>
+                <DatePicker
+                  selected={linkFormData.linkExpiryDate}
+                  onChange={(date) => setLinkFormData({ ...linkFormData, linkExpiryDate: date })}
+                  showTimeSelect
+                  dateFormat="MMM d, yyyy, h:mm aa"
+                  placeholderText="Select date and time"
+                  className={styles.showDate}
+                />
+                <img src={date} alt="" className={styles.date} />
+              </div>
             )}
             <div className={styles.errorContainer}>
-              {errors.linkExpiryDate ? ( <p className={styles.errorMessage}>{errors.linkExpiryDate}</p>) :
-              (<p className={styles.errorMessage}>&nbsp;</p>)}
+              {errors.linkExpiryDate ? (<p className={styles.errorMessage}>{errors.linkExpiryDate}</p>) :
+                (<p className={styles.errorMessage}>&nbsp;</p>)}
             </div>
           </div>
         </div>
@@ -219,7 +223,7 @@ const LinkModal = ({ handleCloseModal, id }) => {
         <div className={styles.clear} onClick={handleClear}>Clear</div>
         {id ? <div className={styles.createNew} onClick={handleUpdateLink}>Update</div> : <div className={styles.createNew} onClick={handleCreateLink}>Create new</div>}
       </div>
-    </div>
+    </div >
   )
 };
 

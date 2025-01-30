@@ -162,3 +162,8 @@
     text-decoration-skip-ink: none;
     color: white;
 }
+.date {
+    position: absolute;
+    top: 9px;
+    right: 9px;
+}

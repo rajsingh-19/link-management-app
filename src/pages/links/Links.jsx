@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from "./links.module.css";
 import Navbar from '../../components/navbar/Navbar';
 import Sidebar from '../../components/sidebar/Sidebar';
-import ConfirmCard from "../../modals/card/ConfirmCard";
+import ConfirmCard from "../../modals/confirmcard/ConfirmCard";
 import LinkModal from "../../modals/link/LinkModal";
 import { getAllLinks, deleteLinkById } from '../../services/index';
 import sortingIcon from "../../assets/sortingIcon.svg";
@@ -26,40 +26,46 @@ const Links = () => {
   const [isGroupedByStatus, setIsGroupedByStatus] = useState(false);
   const [originalLinkData, setOriginalLinkData] = useState([]);
   const [editStatus, setEditStatus] = useState(false);
+  const [islinkPage, setIsLinkPage] = useState(false);
+  const searchResults = sessionStorage.getItem('searchResults');
 
   useEffect(() => {
-    const fetchLinksData = async () => {
-      const token = localStorage.getItem('token');
-      const userId = localStorage.getItem('userId');
+    if (!islinkPage && !searchResults) {
+      const fetchLinksData = async () => {
+        const token = localStorage.getItem('token');
+        const userId = localStorage.getItem('userId');
 
-      try {
-        const res = await getAllLinks(userId, token, currentPage);
+        try {
+          const res = await getAllLinks(userId, token, currentPage);
 
-        if (res.status === 200) {
-          const data = await res.json();
-          const linkArr = data.result;
+          if (res.status === 200) {
+            const data = await res.json();
+            const linkArr = data.result;
 
-          const { totalItems } = data;
+            const { totalItems } = data;
 
-          // Set total items and calculate total pages
-          setTotalItems(totalItems);
-          setTotalPages(Math.ceil(totalItems / 8));
+            // Set total items and calculate total pages
+            setTotalItems(totalItems);
+            setTotalPages(Math.ceil(totalItems / 8));
 
-          // Sort the data based on the current sort order
-          sortLinks(linkArr, sortOrder);
-          setCurrentPage(currentPage);
-        } else {
-          const errorData = await res.json();
-          const errorMessage = errorData.message || "An error occurred";
-          toast.error(errorMessage);
+            // Sort the data based on the current sort order
+            sortLinks(linkArr, sortOrder);
+            setCurrentPage(currentPage);
+          } else {
+            const errorData = await res.json();
+            const errorMessage = errorData.message || "An error occurred";
+            toast.error(errorMessage);
+          }
+        } catch (error) {
+          toast.error(error);
         }
-      } catch (error) {
-        toast.error(error);
-      }
-    };
+      };
 
-    fetchLinksData(currentPage);
-  }, [currentPage, sortOrder, modalStatus]);
+      fetchLinksData(currentPage);
+    } else {
+      setLinkData(JSON.parse(searchResults));
+    }
+  }, [currentPage, sortOrder, modalStatus, islinkPage, searchResults]);
 
   // Function to sort links by date
   const sortLinks = (links, order) => {
@@ -182,7 +188,10 @@ const Links = () => {
 
   return (
     <div className={styles.linkContainer}>
-      <div className={styles.sidebarSection}>
+      <div className={styles.navContainer}>
+        <Navbar handleCreateLink={handleCreateLink} setLinkData={setLinkData} setIsLinkPage={setIsLinkPage} />
+      </div>
+      <div className={styles.sidebarContainer}>
         <Sidebar />
         {/*         copied link button     */}
         {
@@ -194,10 +203,7 @@ const Links = () => {
           )
         }
       </div>
-      <div className={styles.pageSection}>
-        <div className={styles.navContainer}>
-          <Navbar handleCreateLink={handleCreateLink} setLinkData={setLinkData} />
-        </div>
+      {/* <div className={styles.pageSection}> */}
         <div className={styles.contentContainer}>
           <table className={styles.linkTable}>
             <thead>
@@ -314,7 +320,7 @@ const Links = () => {
             </button>
           </div>
         </div>
-      </div>
+      {/* </div> */}
       {/*             Modal Container          */}
       {confirmModalStatus && (
         <div className={styles.confirmModalViewContainer}>

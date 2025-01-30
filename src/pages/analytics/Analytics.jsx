@@ -75,13 +75,13 @@ const Analytics = () => {
 
   return (
     <div className={styles.analyticsContainer}>
-      <div className={styles.sidebarSection}>
+      <div className={styles.navContainer}>
+        <Navbar handleCreateLink={handleCreateLink} />
+      </div>
+      <div className={styles.sidebarContainer}>
         <Sidebar />
       </div>
-      <div className={styles.pageSection}>
-        <div className={styles.navContainer}>
-          <Navbar handleCreateLink={handleCreateLink} />
-        </div>
+      {/* <div className={styles.pageSection}> */}
         <div className={styles.contentContainer}>
           <table className={styles.linkTable}>
             <thead>
@@ -167,7 +167,7 @@ const Analytics = () => {
             </button>
           </div>
         </div>
-      </div>
+      {/* </div> */}
       {/*             create link modal        */}
       {modalStatus && (
           <div className={styles.modalViewContainer}>

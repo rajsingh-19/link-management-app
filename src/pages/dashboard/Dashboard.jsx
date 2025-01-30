@@ -100,13 +100,13 @@ const Dashboard = () => {
 
   return (
     <div className={styles.dashboardContainer}>
-      <div className={styles.sidebarSection}>
+      <div className={styles.navContainer}>
+        <Navbar handleCreateLink={handleCreateLink} />
+      </div>
+      <div className={styles.sidebarContainer}>
         <Sidebar />
       </div>
-      <div className={styles.pageSection}>
-        <div className={styles.navContainer}>
-          <Navbar handleCreateLink={handleCreateLink} />
-        </div>
+      {/* <div className={styles.pageSection}> */}
         <div className={styles.contentContainer}>
           {
             data && (
@@ -153,7 +153,7 @@ const Dashboard = () => {
             )
           }
         </div>
-      </div>
+      {/* </div> */}
       {/*             Modal Container          */}
       {modalStatus && (
         <div className={styles.modalViewContainer}>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./navbar.module.css";
 import sunIcon from "../../assets/sunIcon.png";
@@ -8,7 +8,7 @@ import { IoMdMoon } from "react-icons/io";
 import { searchByRemarks } from "../../services";
 import { toast } from 'react-toastify';
 
-const Navbar = ({ handleCreateLink, setLinkData }) => {
+const Navbar = ({ handleCreateLink, setLinkData, setIsLinkPage }) => {
   const navigate = useNavigate();
   const [activeLogout, setActiveLogout] = useState(false);
   const [userName, setUserName] = useState("");
@@ -26,10 +26,13 @@ const Navbar = ({ handleCreateLink, setLinkData }) => {
       const firstTwoLetter = name.slice(0, 2).toLocaleUpperCase();
       setShortName(firstTwoLetter);
     };
+    if (sessionStorage.getItem('searchQuery')) {
+      setSearchText(sessionStorage.getItem('searchQuery'));
+    }
 
     const formatDate = () => {
       const today = new Date();
-      const options = { weekday: "short", month: "short", day: "numeric", year: "numeric" };
+      const options = { weekday: "short", month: "short", day: "numeric" };
       return today.toLocaleDateString("en-US", options);
     };
 
@@ -46,7 +49,7 @@ const Navbar = ({ handleCreateLink, setLinkData }) => {
 
     fetchUserName();
     setCurrentDate(formatDate());
-    setTimeBasedGreeting(); 
+    setTimeBasedGreeting();
   }, []);
 
   const handleNameClick = () => {
@@ -65,11 +68,21 @@ const Navbar = ({ handleCreateLink, setLinkData }) => {
     setSearchText(value);
 
     if (lastPart === "links") {
-      if (value === '') {
+      if (value === '' && sessionStorage.getItem('searchQuery')) {
+        setIsLinkPage(false);
+        sessionStorage.removeItem('searchResults');
+        sessionStorage.removeItem('searchQuery');
         window.location.reload();
+      } else if (value === '' && !sessionStorage.getItem('searchQuery')) {
+        setIsLinkPage(false);
+        sessionStorage.removeItem('searchResults');
+        sessionStorage.removeItem('searchQuery');
       } else {
         const userId = localStorage.getItem("userId");
         const token = localStorage.getItem("token");
+        setIsLinkPage(true);
+        sessionStorage.removeItem('searchResults');
+        sessionStorage.removeItem('searchQuery');
 
         try {
           const result = await searchByRemarks(userId, token, value);
@@ -86,7 +99,28 @@ const Navbar = ({ handleCreateLink, setLinkData }) => {
         };
       }
     } else if (lastPart !== "links") {
-      navigate("/links");
+      const userId = localStorage.getItem("userId");
+      const token = localStorage.getItem("token");
+
+      try {
+        if (value !== '') {
+          const result = await searchByRemarks(userId, token, value);
+          if (result.status === 200) {
+            const data = await result.json();
+            sessionStorage.setItem('searchQuery', value);
+            sessionStorage.setItem('searchResults', JSON.stringify(data.result));
+            navigate("/links");
+          } else {
+            toast.error("An unexpected error occurred.");
+          }
+        } else {
+          sessionStorage.removeItem('searchResults');
+          sessionStorage.removeItem('searchQuery');
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error("An unexpected error occurred.");
+      };
     }
   };
 
@@ -97,8 +131,8 @@ const Navbar = ({ handleCreateLink, setLinkData }) => {
         <div>
           {
             greeting === "Good evening" ?
-            <IoMdMoon className={styles.moonIcon} /> :
-            <img className={styles.sunIcon} src={sunIcon} alt="sun icon" />
+              <IoMdMoon className={styles.moonIcon} /> :
+              <img className={styles.sunIcon} src={sunIcon} alt="sun icon" />
           }
         </div>
         <div>
@@ -116,7 +150,8 @@ const Navbar = ({ handleCreateLink, setLinkData }) => {
         </div>
         <div>
           <img src={searchIcon} alt="search icon" />
-          <input type="text" placeholder="Search by remarks" value={searchText} onChange={handleChange} />
+          <input type="text" placeholder="Search by remarks" value={searchText}
+            onChange={handleChange} />
         </div>
         <div>
           <button onClick={handleNameClick}>{shortName}</button>

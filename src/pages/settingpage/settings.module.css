@@ -1,110 +1,110 @@
 .settingsContainer {
+    height: 100vh;
     width: 100vw;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    border: 1px solid green;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-areas:
+      "sidebar navbar"
+      "sidebar content";
+    gap: 0px;
+  }
+  .navContainer {
+    grid-area: navbar;
+    height: 9.5vh;
+  }
+  .sidebarContainer {
+    grid-area: sidebar;
     height: 100vh;
-    display: flex;
-    flex-direction: row;
-    background-color: #FFFFFF;
-}
-.sidebarSection {
-    width: 20%;
-    height: 100vh;
-}
-.pageSection {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-}
-.navContainer {
-    width: 100%;
-    height: 10%;
-}
-/*      content container        */
-.contentContainer {
-    width: 100%;
-    height: 90%;
-    padding-top: 64px;
-    padding-left: 183px;
-}
-/*          form             */
-.updateFormContainer {
+    overflow-x: hidden;
+  }
+  .contentContainer {
+    grid-area: content;
+    height: 90.5vh;
+  }
+  /*          form             */
+  .updateFormContainer {
     width: 362px;
-}
-.fieldContainer {
+  }
+  .fieldContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
-.fieldContainer div:nth-child(1) {
+  }
+  .fieldContainer div:nth-child(1) {
     display: flex;
-}
-.fieldContainer div label {
+  }
+  .fieldContainer div label {
     color: #181820;
     font-size: 14px;
     font-weight: 600;
     margin-top: 8px;
-}
-.inputContainer {
+  }
+  .inputContainer {
     width: 100%;
     height: 39px;
-}
-.input {
+  }
+  .input {
     width: 266px;
     height: 100%;
-    color: #3B3C51;
-    border: 1px solid #ECECF2;
-    box-shadow: 0px 1px 2px 0px #1018280D;
+    color: #3b3c51;
+    border: 1px solid #ececf2;
+    box-shadow: 0px 1px 2px 0px #1018280d;
     border-radius: 6px;
     font-size: 14px;
     font-weight: 400;
     padding: 5px 10px;
     outline: none;
-}
-.input::placeholder {
-    color: #3B3C51;
+  }
+  .input::placeholder {
+    color: #3b3c51;
     font-weight: 400;
     font-size: 14px;
-}
-.updateBtn {
+  }
+  .updateBtn {
     width: 100%;
     height: 39px;
     font-size: 14px;
     font-weight: 600;
-    color: #FFFFFF;
-    background-color: #1B48DA;
-    border: 1px solid #1B48DA;
+    color: #ffffff;
+    background-color: #1b48da;
+    border: 1px solid #1b48da;
     cursor: pointer;
     border-radius: 6px;
     margin-top: 40px;
     margin-bottom: 20px;
-}
-.deleteBtn {
+  }
+  .deleteBtn {
     width: 362px;
     height: 39px;
     font-size: 14px;
     font-weight: 600;
-    color: #FFFFFF;
-    background-color: #EB0D0D;
-    border: 1px solid #EB0D0D;
+    color: #ffffff;
+    background-color: #eb0d0d;
+    border: 1px solid #eb0d0d;
     cursor: pointer;
     border-radius: 6px;
-}
-/*       Error message container */
-.errorContainer {
+  }
+  /*       Error message container */
+  .errorContainer {
     width: 266px;
-}
-.errorMessage {
+  }
+  .errorMessage {
     height: 16px;
     font-size: 14px;
-    color: #FF0101;
+    color: #ff0101;
     line-height: 20px;
     margin-bottom: 10px;
     margin-top: 5px;
-}
-.errorMessage:empty {
+  }
+  .errorMessage:empty {
     visibility: hidden;
-}
-/*          modal view container        */
-.confirmModalViewContainer, .modalViewContainer {
+  }
+  /*          modal view container        */
+  .confirmModalViewContainer,
+  .modalViewContainer {
     position: fixed;
     top: 0;
     left: 0;
@@ -116,10 +116,57 @@
     align-items: center;
     width: 100%;
     height: 100%;
-}
-.confirmModalViewContainer {
+  }
+  .confirmModalViewContainer {
     background: rgba(0, 0, 0, 0.5);
-}
-.modalViewContainer {
+  }
+  .modalViewContainer {
     background: rgba(0, 0, 0, 0.1);
-}
+  }
+  
+  /*              responsiveness               */
+  /*  mobile devices (320px - 426px) */
+  @media screen and (max-width: 426px) {
+      .settingsContainer {
+          height: auto;
+          width: 100%;
+          grid-template-columns: 100%;
+          grid-template-areas:
+          "navbar"
+          "sidebar"
+          "content";
+          gap: 0px;
+      }
+      .navContainer {
+          height: auto;
+      }
+      .contentContainer {
+          height: auto;
+      }
+      .sidebarContainer {
+          height: auto;
+      }
+  }
+  /* Tablets (426px to 768px) */
+  @media screen and (min-width: 426px) and (max-width: 768px) {
+      .settingsContainer {
+          height: auto;
+          width: 100%;
+          grid-template-columns: 100%;
+          grid-template-areas:
+          "navbar"
+          "sidebar"
+          "content";
+          gap: 0px;
+      }
+      .navContainer {
+          height: auto;
+      }
+      .contentContainer {
+          height: auto;
+      }
+      .sidebarContainer {
+          height: auto;
+      }
+  }
+  

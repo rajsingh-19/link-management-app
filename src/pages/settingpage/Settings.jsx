@@ -177,13 +177,13 @@ const Settings = () => {
 
   return (
     <div className={styles.settingsContainer}>
-      <div className={styles.sidebarSection}>
+      <div className={styles.navContainer}>
+        <Navbar handleCreateLink={handleCreateLink} />
+      </div>
+      <div className={styles.sidebarContainer}>
         <Sidebar />
       </div>
-      <div className={styles.pageSection}>
-        <div className={styles.navContainer}>
-          <Navbar handleCreateLink={handleCreateLink} />
-        </div>
+      {/* <div className={styles.pageSection}> */}
         <div className={styles.contentContainer}>
           {/*     Form for user login     */}
           <form onSubmit={handleUpdateUser} className={styles.updateFormContainer}>
@@ -241,7 +241,7 @@ const Settings = () => {
               <button className={styles.deleteBtn} onClick={handleDeleteConfirm}>Delete Account</button>
             </div>
         </div>
-      </div>
+      {/* </div> */}
       {/*             Modal Container          */}
         {confirmModalStatus && (
           <div className={styles.confirmModalViewContainer}>

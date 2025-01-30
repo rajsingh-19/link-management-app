@@ -4,6 +4,7 @@
     height: 100vh;
     border-right: 1px solid #F6F6F9;
     background-color: #FFFFFFE8;
+    overflow-x: hidden; 
 }
 .iconContainer {
     height: 80px;
@@ -12,6 +13,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin-bottom: 10px;
 }
 .iconContainer div {
     width: 90%;
@@ -23,15 +25,13 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 150px;
-    border-bottom: 1px solid #F2F2F2;
 }
 .navigationContainer div {
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 90%;
-    height: 39px;
+    height: 42px;
     padding: 0px 10px;
     transition: background-color 0.3s;
 }
@@ -48,6 +48,12 @@
     cursor: pointer;
     transition: color 0.3s;
 }
+.navigationContainer div:nth-child(1) {
+    margin-top: 16px;
+}
+.navigationContainer div:nth-child(3) {
+    margin-bottom: 16px;
+}
 .settingContainer {
     display: flex;
     flex-direction: column;
@@ -55,9 +61,10 @@
     justify-content: center;
     width: 100%;
     height: 70px;
+    border-top: 1px solid #F6F6F9;
     border-bottom: 1px solid #F6F6F9;
 }
-.settingContainer div {
+.settingContainer > div {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -66,11 +73,11 @@
     padding: 0px 10px;
     transition: background-color 0.3s;
 }
-.settingContainer div img {
+.settingContainer > div > img {
     margin-right: 5px;
     transition: color 0.3s;
 }
-.settingContainer div button {
+.settingContainer > div > button {
     font-weight: 600;
     font-size: 16px;
     color: #3B3C51;
@@ -91,4 +98,68 @@
 /* Change button text color */
 .active button span {
     color: #1B48DA;
+}
+
+/*                  responsivenss               */
+/* Mobile devices (320px to 426px) */
+@media screen and (max-width: 426px) {
+    .sidebarContainer {
+        flex-direction: row;
+        align-items: center;
+        height: auto;
+        overflow-x: scroll;
+        white-space: nowrap;
+    }
+    .iconContainer {
+        display: none;
+    }
+    .navigationContainer {
+        flex-direction: row;
+        height: 50px;
+        border-bottom: none;
+    }
+    .navigationContainer div:nth-child(1) {
+        margin-top: 0px;
+    }
+    .navigationContainer div:nth-child(3) {
+        margin-bottom: 0px;
+    }
+    .settingContainer {
+        height: 50px;
+        border-bottom: none;
+    }
+    .settingContainer div {
+        width: 100%;
+    }
+}
+/* Tablets (426px to 768px) */
+@media screen and (min-width: 426px) and (max-width: 768px) {
+    .sidebarContainer {
+        flex-direction: row;
+        align-items: center;
+        height: auto;
+        overflow-x: scroll;
+        white-space: nowrap;
+    }
+    .iconContainer {
+        display: none;
+    }
+    .navigationContainer {
+        flex-direction: row;
+        height: 50px;
+        border-bottom: none;
+    }
+    .navigationContainer div:nth-child(1) {
+        margin-top: 0px;
+    }
+    .navigationContainer div:nth-child(3) {
+        margin-bottom: 0px;
+    }
+    .settingContainer {
+        height: 50px;
+        border-bottom: none;
+    }
+    .settingContainer div {
+        width: 100%;
+    }
 }
