@@ -106,7 +106,6 @@
 .errorMessage:empty {
     visibility: hidden;
 }
-
 .input:focus {
     outline: none;
 }
@@ -169,34 +168,28 @@
 }
 
 /*        responsiveness             */
-@media screen and (max-width:425px) {
+@media screen and (max-width:426px) {
     .container {
         width: 100%;
         margin: 0rem 1rem;
     }
-
     .secondSection {
         height: 500px;
     }
-
     .thirdSection {
         background: #808080fc;
     }
-
     .clear {
         color: white;
     }
 }
-
 @media (min-width:425px) and (max-width:1024px) {
     .secondSection {
         height: 500px;
     }
-
     .thirdSection {
         background: #808080fc;
     }
-
     .clear {
         color: white;
     }

@@ -81,7 +81,8 @@ const Analytics = () => {
       <div className={styles.sidebarContainer}>
         <Sidebar />
       </div>
-        <div className={styles.contentContainer}>
+      <div className={styles.contentContainer}>
+        <div className={styles.tableContainer}>
           <table className={styles.linkTable}>
             <thead>
               <tr>
@@ -166,6 +167,7 @@ const Analytics = () => {
             </button>
           </div>
         </div>
+      </div>
       {/*             create link modal        */}
       {modalStatus && (
           <div className={styles.modalViewContainer}>

@@ -3,7 +3,6 @@
   width: 100vw;
   overflow-x: hidden;
   overflow-y: hidden;
-  border: 1px solid green;
   display: grid;
   grid-template-columns: 20% 80%;
   grid-template-areas:
@@ -207,7 +206,6 @@
     width: 50%;
   }
 }
-
 /* Tablets (426px to 768px) */
 @media screen and (min-width: 426px) and (max-width: 768px) {
   .dashboardContainer {
@@ -288,15 +286,13 @@
     width: 60%;
   }
 }
-
-/* Tablets (768px to 1200px) */
+/* Tablets (769px to 1200px) */
 @media screen and (min-width: 769px) and (max-width: 1200px) {
   .dashboardContainer {
     height: 100vh;
     width: 100vw;
     overflow-x: hidden;
     overflow-y: hidden;
-    border: 1px solid green;
     display: grid;
     grid-template-columns: 20% 80%;
     grid-template-areas:

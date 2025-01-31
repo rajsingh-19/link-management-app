@@ -3,7 +3,6 @@
   width: 100vw;
   overflow-x: hidden;
   overflow-y: hidden;
-  border: 1px solid green;
   display: grid;
   grid-template-columns: 20% 80%;
   grid-template-areas:
@@ -23,14 +22,18 @@
 .contentContainer {
   grid-area: content;
   height: 90.5vh;
+  position: relative;
+}
+.tableContainer {
+  justify-self: center;
+  width: 96%;
+  overflow-x: auto;
 }
 /*          link table      */
-table {
+.linkTable {
   border-collapse: collapse; /* Ensures no space between table cells */
   table-layout: fixed;
-}
-.linkTable {
-  width: 96%;
+  width: 100%;
   border-radius: 12px;
   margin-top: 20px;
   box-shadow: 0px 4px 4px 0px #0000000a;
@@ -149,6 +152,8 @@ table {
 }
 /*              pagination       */
 .paginationContainer {
+  left: 50%;
+  transform: translateX(-50%);
   height: 21px;
   bottom: 40px;
   position: absolute;
@@ -180,7 +185,6 @@ table {
   background-color: #ffffff;
   border: 0.66px solid #4200ff !important;
 }
-
 /*      copied link btn      */
 .copiedLinkBtn {
   width: 215px;
@@ -233,45 +237,102 @@ table {
 /*              responsiveness               */
 /*  mobile devices (320px - 426px) */
 @media screen and (max-width: 426px) {
-    .linkContainer {
-        height: auto;
-        width: 100%;
-        grid-template-columns: 100%;
-        grid-template-areas:
-        "navbar"
-        "sidebar"
-        "content";
-        gap: 0px;
-    }
-    .navContainer {
-        height: auto;
-    }
-    .contentContainer {
-        height: auto;
-    }
-    .sidebarContainer {
-        height: auto;
-    }
+  .linkContainer {
+    height: auto;
+    width: 100%;
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "navbar"
+      "sidebar"
+      "content";
+    gap: 0px;
+  }
+  .navContainer {
+    height: auto;
+  }
+  .sidebarContainer {
+    height: auto;
+  }
+  .contentContainer {
+    height: auto;
+  }
+  .tableContainer {
+    margin-top: 30px;
+    overflow-x: auto;
+    margin-bottom: 120px;
+  }
+  .linkTable {
+    width: 916px;
+    overflow-x: scroll;
+  }
 }
 /* Tablets (426px to 768px) */
 @media screen and (min-width: 426px) and (max-width: 768px) {
-    .linkContainer {
-        height: auto;
-        width: 100%;
-        grid-template-columns: 100%;
-        grid-template-areas:
-        "navbar"
-        "sidebar"
-        "content";
-        gap: 0px;
-    }
-    .navContainer {
-        height: auto;
-    }
-    .contentContainer {
-        height: auto;
-    }
-    .sidebarContainer {
-        height: auto;
-    }
+  .linkContainer {
+    height: auto;
+    width: 100%;
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "navbar"
+      "sidebar"
+      "content";
+    gap: 0px;
+  }
+  .navContainer {
+    height: auto;
+  }
+  .sidebarContainer {
+    height: auto;
+  }
+  .contentContainer {
+    height: auto;
+  }
+  .tableContainer {
+    margin-top: 30px;
+    overflow-x: auto;
+    margin-bottom: 120px;
+  }
+  .linkTable {
+    width: 916px;
+    overflow-x: scroll;
+  }
+}
+/* Tablets (769px to 1200px) */
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .linkContainer {
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-areas:
+      "sidebar navbar"
+      "sidebar content";
+    gap: 0px;
+  }
+  .navContainer {
+    grid-area: navbar;
+    height: 9.5vh;
+  }
+  .sidebarContainer {
+    grid-area: sidebar;
+    height: 100vh;
+    overflow-x: hidden;
+  }
+  .contentContainer {
+    grid-area: content;
+    height: 90.5vh;
+    position: relative;
+  }
+  .tableContainer {
+    justify-self: center;
+    width: 96%;
+    overflow-x: auto;
+    margin-bottom: 120px;
+  }
+  .linkTable {
+    width: 916px;
+    overflow-x: scroll;
+  }
 }

@@ -27,7 +27,6 @@
     margin-top: 5px;
     margin-bottom: 42px;
 }
-
 .btnsContainer {
     width: 382px;
     display: flex;
@@ -60,11 +59,9 @@
         height: 195px;
         margin: 0rem 1rem;
     }
-
     .confirmation {
         margin-bottom: 25px;
     }
-
     .btnsContainer {
         width: 100%;
         flex-direction: column;
@@ -73,7 +70,6 @@
         justify-content: center;
     }
 }
-
 @media (min-width:425px) and (max-width:1024px) {
     .cardContainer {
         width: 417px;

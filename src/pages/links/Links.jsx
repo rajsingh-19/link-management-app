@@ -95,22 +95,6 @@ const Links = () => {
     });
   };
 
-  // // Handle status sorting toggle
-  // const handleStatusSort = () => {
-  //   if (!isGroupedByStatus) {
-  //     // Store the original order if grouping is being applied for the first time
-  //     setOriginalLinkData([...linkData]);
-  //     const groupedLinks = groupLinksByStatus(linkData);
-  //     setLinkData(groupedLinks); // Group links by status
-  //   } else {
-  //     // Restore the original order
-  //     setLinkData(originalLinkData);
-  //   }
-
-  //   // Toggle the grouping state
-  //   setIsGroupedByStatus(!isGroupedByStatus);
-  // };
-
   const handleStatusSort = () => {
     setIsGroupedByStatus(prevState => !prevState);
   };
@@ -218,7 +202,8 @@ const Links = () => {
           )
         }
       </div>
-        <div className={styles.contentContainer}>
+      <div className={styles.contentContainer}>
+        <div className={styles.tableContainer}>
           <table className={styles.linkTable}>
             <thead>
               <tr>
@@ -334,6 +319,7 @@ const Links = () => {
             </button>
           </div>
         </div>
+      </div>  
       {/*             Modal Container          */}
       {confirmModalStatus && (
         <div className={styles.confirmModalViewContainer}>
