@@ -76,23 +76,6 @@ const Dashboard = () => {
       const sortedDates = Object.entries(dateClicksMap)
         .map(([date, count]) => ({ date, noOfClicks: count }))
         .sort((a, b) => new Date(a.date.split("-").reverse().join("-")) - new Date(b.date.split("-").reverse().join("-")));
-    
-      // clicksData.forEach((record) => {
-      //   const { clickedAt, userDevice } = record.click;
-      //   const date = clickedAt.split("T")[0];
-
-      //   // Count clicks per date
-      //   dateClicksMap[date] = (dateClicksMap[date] || 0) + 1;
-
-      //   // Categorize and count user devices
-      //   const category = categorizeDevice(userDevice);
-      //   userDeviceCounts[category] += 1;
-      // });
-
-      // Sort dates (oldest first) and accumulate clicks
-      // const sortedDates = Object.entries(dateClicksMap)
-      //   .map(([date, count]) => ({ date, noOfClicks: count }))
-      //   .sort((a, b) => new Date(a.date) - new Date(b.date));
 
       const accumulatedDateClicks = [];
       let cumulativeClicks = 0;
