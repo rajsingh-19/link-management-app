@@ -1,4 +1,297 @@
 .dashboardContainer {
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  border: 1px solid green;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-areas:
+    "sidebar navbar"
+    "sidebar content";
+  gap: 0px;
+}
+.navContainer {
+  grid-area: navbar;
+  height: 9.5vh;
+}
+.sidebarContainer {
+  grid-area: sidebar;
+  height: 100vh;
+  overflow-x: hidden;
+}
+.contentContainer {
+  grid-area: content;
+  height: 90.5vh;
+}
+/*          dashboard content container  */
+.countContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 63px;
+  margin-left: 44px;
+}
+/*          clicks counting  */
+.clicksCountContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 209px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 27px;
+  margin-bottom: 63px;
+}
+.clicksCountContainer span:first-of-type {
+  color: #181820;
+}
+.clicksCountContainer span:last-of-type {
+  color: #1b48da;
+}
+/*          clicks info card     */
+.clicksInfoCardsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 882px;
+}
+.clicksInfoCardsContainer > div {
+  width: 433px;
+  height: 463px;
+  border-radius: 6px;
+  border: 1px solid #ececf2;
+  box-shadow: 0px 1px 2px 0px #1018280d;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 30px;
+}
+.clicksInfoCardsContainer > div:nth-child(1) {
+  margin-right: 20px;
+}
+.clicksInfoCardsContainer > div > div:first-of-type {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #1b48da;
+  margin-bottom: 38px;
+}
+/*      date wise container  */
+.datewiseContainer {
+  width: 372px;
+  display: flex;
+  flex-direction: column;
+}
+.datewiseContainer > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.datewiseContainer > div span:last-of-type {
+  display: flex;
+  flex-direction: row-reverse;
+}
+/*      device wise container    */
+.devicewiseContainer {
+  width: 322px;
+  display: flex;
+  flex-direction: column;
+}
+.devicewiseContainer > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.devicewiseContainer > div span:first-of-type {
+  width: 65px;
+}
+.devicewiseContainer > div span:last-of-type {
+  width: 35px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.progressbarContainer {
+  width: 200px;
+  height: 15px;
+  background-color: blue;
+}
+/*          modal view container        */
+.modalViewContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/*              responsiveness               */
+/*  mobile devices (320px - 426px) */
+@media screen and (max-width: 426px) {
+  .dashboardContainer {
+    height: auto;
+    width: 100%;
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "navbar"
+      "sidebar"
+      "content";
+    gap: 0px;
+  }
+  .navContainer {
+    height: auto;
+  }
+  .sidebarContainer {
+    height: auto;
+  }
+  .contentContainer {
+    height: auto;
+    width: 100%;
+    justify-items: center;
+  }
+  .countContainer {
+    margin-top: 30px;
+    margin-left: 0px;
+    width: 90%;
+    align-items: center;
+  }
+  /*          clicks counting  */
+  .clicksCountContainer {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  .clicksInfoCardsContainer {
+    flex-direction: column;
+    width: 100%;
+  }
+  .clicksInfoCardsContainer > div {
+    width: 100%;
+    height: max-content;
+    margin-bottom: 30px;
+    padding: 30px 10px;
+  }
+  .datewiseContainer {
+    width: 100%;
+  }
+  .datewiseContainer > div {
+    font-size: 12px;
+  }
+  .datewiseContainer > div span:first-of-type {
+    width: 22%;
+  }
+  .datewiseContainer > div span:last-of-type {
+    width: 8%;
+  }
+  .devicewiseContainer {
+    width: 100%;
+  }
+  .devicewiseContainer > div {
+    font-size: 12px;
+  }
+  .devicewiseContainer > div span:first-of-type {
+    width: 25%;
+  }
+  .devicewiseContainer > div span:last-of-type {
+    width: 18%;
+  }
+  .progressbarContainer {
+    width: 50%;
+  }
+}
+
+/* Tablets (426px to 768px) */
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  .dashboardContainer {
+    height: auto;
+    width: 100%;
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "navbar"
+      "sidebar"
+      "content";
+    gap: 0px;
+  }
+  .navContainer {
+    height: auto;
+  }
+  .sidebarContainer {
+    height: auto;
+  }
+  .contentContainer {
+    height: auto;
+    width: 100%;
+    justify-items: center;
+  }
+  .countContainer {
+    margin-top: 30px;
+    margin-left: 0px;
+    width: 90%;
+    align-items: center;
+  }
+  /*          clicks counting  */
+  .clicksCountContainer {
+    width: 90%;
+    justify-content: left;
+    margin-bottom: 30px;
+  }
+  .clicksCountContainer > span:first-of-type {
+    margin-right: 40px;
+  }
+  .clicksInfoCardsContainer {
+    flex-direction: column;
+    width: 90%;
+  }
+  .clicksInfoCardsContainer > div {
+    width: 100%;
+    height: max-content;
+    margin-bottom: 30px;
+    padding: 30px 10px;
+  }
+  .clicksInfoCardsContainer > div > div:nth-child(1) {
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .datewiseContainer {
+    width: 100%;
+  }
+  .datewiseContainer > div {
+    font-size: 16px;
+  }
+  .datewiseContainer > div span:first-of-type {
+    width: 22%;
+  }
+  .datewiseContainer > div span:last-of-type {
+    width: 8%;
+  }
+  .devicewiseContainer {
+    width: 100%;
+  }
+  .devicewiseContainer > div {
+    font-size: 16px;
+  }
+  .devicewiseContainer > div span:first-of-type {
+    width: 22%;
+  }
+  .devicewiseContainer > div span:last-of-type {
+    width: 18%;
+  }
+  .progressbarContainer {
+    width: 60%;
+  }
+}
+
+/* Tablets (768px to 1200px) */
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .dashboardContainer {
     height: 100vh;
     width: 100vw;
     overflow-x: hidden;
@@ -24,157 +317,10 @@
     grid-area: content;
     height: 90.5vh;
   }
-  /*          dashboard content container  */
   .countContainer {
-    display: flex;
-    flex-direction: column;
-    margin-top: 63px;
-    margin-left: 44px;
+    margin-top: 30px;
+    margin-left: 40px;
+    width: 90%;
+    overflow-x: scroll;
   }
-  /*          clicks counting  */
-  .clicksCountContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 209px;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 27px;
-    margin-bottom: 63px;
-  }
-  .clicksCountContainer span:first-of-type {
-    color: #181820;
-  }
-  .clicksCountContainer span:last-of-type {
-    color: #1b48da;
-  }
-  /*          clicks info card     */
-  .clicksInfoCardsContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 882px;
-  }
-  .clicksInfoCardsContainer > div {
-    width: 433px;
-    height: 463px;
-    border-radius: 6px;
-    border: 1px solid #ececf2;
-    box-shadow: 0px 1px 2px 0px #1018280d;
-    display: flex;
-    flex-direction: column;
-    padding: 16px 30px;
-  }
-  .clicksInfoCardsContainer > div > div:first-of-type {
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 20px;
-    color: #1b48da;
-    margin-bottom: 38px;
-  }
-  /*      date wise container  */
-  .datewiseContainer {
-    width: 372px;
-    display: flex;
-    flex-direction: column;
-  }
-  .datewiseContainer > div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-  .datewiseContainer > div span:last-of-type {
-    display: flex;
-    flex-direction: row-reverse;
-  }
-  /*      device wise container    */
-  .devicewiseContainer {
-    width: 322px;
-    display: flex;
-    flex-direction: column;
-  }
-  .devicewiseContainer > div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-  .devicewiseContainer > div span:first-of-type {
-    width: 65px;
-  }
-  .devicewiseContainer > div span:last-of-type {
-    width: 35px;
-    display: flex;
-    flex-direction: row-reverse;
-  }
-  .progressbarContainer {
-    width: 200px;
-    height: 15px;
-    background-color: blue;
-  }
-  
-  /*          modal view container        */
-  .modalViewContainer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
-  
-  /*              responsiveness               */
-  /*  mobile devices (320px - 426px) */
-  @media screen and (max-width: 426px) {
-      .dashboardContainer {
-          height: auto;
-          width: 100%;
-          grid-template-columns: 100%;
-          grid-template-areas:
-          "navbar"
-          "sidebar"
-          "content";
-          gap: 0px;
-      }
-      .navContainer {
-          height: auto;
-      }
-      .contentContainer {
-          height: auto;
-      }
-      .sidebarContainer {
-          height: auto;
-      }
-  }
-  /* Tablets (426px to 768px) */
-  @media screen and (min-width: 426px) and (max-width: 768px) {
-      .dashboardContainer {
-          height: auto;
-          width: 100%;
-          grid-template-columns: 100%;
-          grid-template-areas:
-          "navbar"
-          "sidebar"
-          "content";
-          gap: 0px;
-      }
-      .navContainer {
-          height: auto;
-      }
-      .contentContainer {
-          height: auto;
-      }
-      .sidebarContainer {
-          height: auto;
-      }
-  }
-  
+}

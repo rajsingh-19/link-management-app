@@ -1,172 +1,317 @@
 .settingsContainer {
-    height: 100vh;
-    width: 100vw;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    border: 1px solid green;
-    display: grid;
-    grid-template-columns: 20% 80%;
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-areas:
+    "sidebar navbar"
+    "sidebar content";
+  gap: 0px;
+}
+.navContainer {
+  grid-area: navbar;
+  height: 9.5vh;
+}
+.sidebarContainer {
+  grid-area: sidebar;
+  height: 100vh;
+  overflow-x: hidden;
+}
+.contentContainer {
+  grid-area: content;
+  height: 90.5vh;
+  padding-top: 64px;
+  padding-left: 183px;
+}
+/*          form             */
+.updateFormContainer {
+  width: 362px;
+}
+.fieldContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.fieldContainer div:nth-child(1) {
+  display: flex;
+}
+.fieldContainer div label {
+  color: #181820;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+.inputContainer {
+  width: 100%;
+  height: 39px;
+}
+.input {
+  width: 266px;
+  height: 100%;
+  color: #3b3c51;
+  border: 1px solid #ececf2;
+  box-shadow: 0px 1px 2px 0px #1018280d;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 5px 10px;
+  outline: none;
+}
+.input::placeholder {
+  color: #3b3c51;
+  font-weight: 400;
+  font-size: 14px;
+}
+.updateBtn {
+  width: 100%;
+  height: 39px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #1b48da;
+  border: 1px solid #1b48da;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+.deleteBtn {
+  width: 362px;
+  height: 39px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #eb0d0d;
+  border: 1px solid #eb0d0d;
+  cursor: pointer;
+  border-radius: 6px;
+}
+/*       Error message container */
+.errorContainer {
+  width: 266px;
+}
+.errorMessage {
+  height: 16px;
+  font-size: 14px;
+  color: #ff0101;
+  line-height: 20px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+.errorMessage:empty {
+  visibility: hidden;
+}
+/*          modal view container        */
+.confirmModalViewContainer,
+.modalViewContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.confirmModalViewContainer {
+  background: rgba(0, 0, 0, 0.5);
+}
+.modalViewContainer {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/*              responsiveness               */
+/*  mobile devices (320px - 426px) */
+@media screen and (max-width: 426px) {
+  .settingsContainer {
+    height: auto;
+    width: 100%;
+    grid-template-columns: 100%;
     grid-template-areas:
-      "sidebar navbar"
-      "sidebar content";
+      "navbar"
+      "sidebar"
+      "content";
     gap: 0px;
   }
   .navContainer {
-    grid-area: navbar;
-    height: 9.5vh;
+    height: auto;
   }
   .sidebarContainer {
-    grid-area: sidebar;
-    height: 100vh;
-    overflow-x: hidden;
+    height: auto;
   }
   .contentContainer {
-    grid-area: content;
-    height: 90.5vh;
+    height: auto;
+    padding-top: 0px;
+    padding-left: 0px;
   }
-  /*          form             */
   .updateFormContainer {
-    width: 362px;
+    width: 90%;
+    margin-top: 40px;
+    justify-self: center;
   }
   .fieldContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 100%;
   }
-  .fieldContainer div:nth-child(1) {
+  .fieldContainer > div:nth-child(1) {
     display: flex;
+    width: 30%;
   }
   .fieldContainer div label {
-    color: #181820;
-    font-size: 14px;
-    font-weight: 600;
-    margin-top: 8px;
+    width: 100%;
+  }
+  .fieldContainer > div:nth-child(2) {
+    width: 70%;
   }
   .inputContainer {
     width: 100%;
     height: 39px;
   }
   .input {
-    width: 266px;
-    height: 100%;
-    color: #3b3c51;
-    border: 1px solid #ececf2;
-    box-shadow: 0px 1px 2px 0px #1018280d;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 400;
-    padding: 5px 10px;
-    outline: none;
-  }
-  .input::placeholder {
-    color: #3b3c51;
-    font-weight: 400;
-    font-size: 14px;
+    width: 100%;
   }
   .updateBtn {
-    width: 100%;
-    height: 39px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #ffffff;
-    background-color: #1b48da;
-    border: 1px solid #1b48da;
-    cursor: pointer;
-    border-radius: 6px;
-    margin-top: 40px;
+    margin-top: 25px;
     margin-bottom: 20px;
   }
+  .contentContainer > div {
+    justify-self: center;
+    width: 90%;
+  }
   .deleteBtn {
-    width: 362px;
-    height: 39px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #ffffff;
-    background-color: #eb0d0d;
-    border: 1px solid #eb0d0d;
-    cursor: pointer;
-    border-radius: 6px;
+    width: 100%;
   }
-  /*       Error message container */
-  .errorContainer {
-    width: 266px;
+}
+/* Tablets (426px to 558px) */
+@media screen and (min-width: 426px) and (max-width: 558px) {
+  .settingsContainer {
+    height: auto;
+    width: 100%;
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "navbar"
+      "sidebar"
+      "content";
+    gap: 0px;
   }
-  .errorMessage {
-    height: 16px;
-    font-size: 14px;
-    color: #ff0101;
-    line-height: 20px;
-    margin-bottom: 10px;
-    margin-top: 5px;
+  .navContainer {
+    height: auto;
   }
-  .errorMessage:empty {
-    visibility: hidden;
+  .sidebarContainer {
+    height: auto;
   }
-  /*          modal view container        */
-  .confirmModalViewContainer,
-  .modalViewContainer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+  .contentContainer {
+    height: auto;
+    padding-top: 20px;
+    padding-left: 20px;
+  }
+  .updateFormContainer {
+    width: 90%;
+    margin-top: 40px;
+    justify-self: center;
+  }
+  .fieldContainer {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    height: 100%;
   }
-  .confirmModalViewContainer {
-    background: rgba(0, 0, 0, 0.5);
+  .fieldContainer > div:nth-child(1) {
+    display: flex;
+    width: 20%;
   }
-  .modalViewContainer {
-    background: rgba(0, 0, 0, 0.1);
+  .fieldContainer div label {
+    width: 100%;
   }
-  
-  /*              responsiveness               */
-  /*  mobile devices (320px - 426px) */
-  @media screen and (max-width: 426px) {
-      .settingsContainer {
-          height: auto;
-          width: 100%;
-          grid-template-columns: 100%;
-          grid-template-areas:
-          "navbar"
-          "sidebar"
-          "content";
-          gap: 0px;
-      }
-      .navContainer {
-          height: auto;
-      }
-      .contentContainer {
-          height: auto;
-      }
-      .sidebarContainer {
-          height: auto;
-      }
+  .fieldContainer > div:nth-child(2) {
+    width: 80%;
   }
-  /* Tablets (426px to 768px) */
-  @media screen and (min-width: 426px) and (max-width: 768px) {
-      .settingsContainer {
-          height: auto;
-          width: 100%;
-          grid-template-columns: 100%;
-          grid-template-areas:
-          "navbar"
-          "sidebar"
-          "content";
-          gap: 0px;
-      }
-      .navContainer {
-          height: auto;
-      }
-      .contentContainer {
-          height: auto;
-      }
-      .sidebarContainer {
-          height: auto;
-      }
+  .inputContainer {
+    width: 100%;
+    height: 39px;
   }
-  
+  .input {
+    width: 100%;
+  }
+  .updateBtn {
+    margin-top: 25px;
+    margin-bottom: 20px;
+  }
+  .contentContainer > div {
+    justify-self: center;
+    width: 90%;
+  }
+  .deleteBtn {
+    width: 100%;
+  }
+}
+/* Tablets (558px to 768px) */
+@media screen and (min-width: 558px) and (max-width: 768px) {
+  .settingsContainer {
+    height: auto;
+    width: 100%;
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "navbar"
+      "sidebar"
+      "content";
+    gap: 0px;
+  }
+  .navContainer {
+    height: auto;
+  }
+  .sidebarContainer {
+    height: auto;
+  }
+  .contentContainer {
+    height: auto;
+    padding-top: 40px;
+    padding-left: 40px;
+  }
+  .updateFormContainer {
+    width: 80%;
+    margin-top: 40px;
+    justify-self: center;
+  }
+  .fieldContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .fieldContainer > div:nth-child(1) {
+    display: flex;
+    width: 20%;
+  }
+  .fieldContainer div label {
+    width: 100%;
+  }
+  .fieldContainer > div:nth-child(2) {
+    width: 80%;
+  }
+  .inputContainer {
+    width: 100%;
+    height: 39px;
+  }
+  .input {
+    width: 100%;
+  }
+  .updateBtn {
+    margin-top: 25px;
+    margin-bottom: 20px;
+  }
+  .contentContainer > div {
+    justify-self: center;
+    width: 80%;
+  }
+  .deleteBtn {
+    width: 100%;
+  }
+}

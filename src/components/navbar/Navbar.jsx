@@ -23,12 +23,13 @@ const Navbar = ({ handleCreateLink, setLinkData, setIsLinkPage }) => {
     const fetchUserName = () => {
       const name = localStorage.getItem('name');
       setUserName(name);
-      const firstTwoLetter = name.slice(0, 2).toLocaleUpperCase();
+      const firstTwoLetter = name.slice(0, 2).toUpperCase();
       setShortName(firstTwoLetter);
     };
+
     if (sessionStorage.getItem('searchQuery')) {
       setSearchText(sessionStorage.getItem('searchQuery'));
-    }
+    };
 
     const formatDate = () => {
       const today = new Date();

@@ -183,7 +183,6 @@ const Settings = () => {
       <div className={styles.sidebarContainer}>
         <Sidebar />
       </div>
-      {/* <div className={styles.pageSection}> */}
         <div className={styles.contentContainer}>
           {/*     Form for user login     */}
           <form onSubmit={handleUpdateUser} className={styles.updateFormContainer}>
@@ -238,10 +237,9 @@ const Settings = () => {
             </div>
           </form>
           <div>
-              <button className={styles.deleteBtn} onClick={handleDeleteConfirm}>Delete Account</button>
-            </div>
+            <button className={styles.deleteBtn} onClick={handleDeleteConfirm}>Delete Account</button>
+          </div>
         </div>
-      {/* </div> */}
       {/*             Modal Container          */}
         {confirmModalStatus && (
           <div className={styles.confirmModalViewContainer}>

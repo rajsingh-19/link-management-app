@@ -57,9 +57,15 @@ const Login = () => {
                 const userId = data.result.userId;
                 const name = data.result.name;
 
+                const trimmedName = name.trim();
+                const firstWord = trimmedName.split(/\s+/)[0]; // First word
+
+                // Capitalize the first letter of the first word
+                const formattedName = firstWord.charAt(0).toUpperCase() + firstWord.slice(1).toLowerCase();
+
                 localStorage.setItem('token', token);      // Save token for later use
                 localStorage.setItem('userId', userId);      // Save userId for later use
-                localStorage.setItem('name', name);      // Save name for later use
+                localStorage.setItem('name', formattedName);      // Save name for later use
 
                 // Reset form data after successful registration
                 setLoginFormData({

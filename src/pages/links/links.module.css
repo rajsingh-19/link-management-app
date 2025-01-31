@@ -23,6 +23,8 @@
 .contentContainer {
   grid-area: content;
   height: 90.5vh;
+  /* display: flex; */
+  /* justify-content: center; */
 }
 /*          link table      */
 table {

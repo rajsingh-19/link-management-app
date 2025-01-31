@@ -203,7 +203,6 @@ const Links = () => {
           )
         }
       </div>
-      {/* <div className={styles.pageSection}> */}
         <div className={styles.contentContainer}>
           <table className={styles.linkTable}>
             <thead>
@@ -320,7 +319,6 @@ const Links = () => {
             </button>
           </div>
         </div>
-      {/* </div> */}
       {/*             Modal Container          */}
       {confirmModalStatus && (
         <div className={styles.confirmModalViewContainer}>

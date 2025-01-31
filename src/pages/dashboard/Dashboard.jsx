@@ -57,20 +57,42 @@ const Dashboard = () => {
 
       clicksData.forEach((record) => {
         const { clickedAt, userDevice } = record.click;
-        const date = clickedAt.split("T")[0];
-
+        const date = new Date(clickedAt);
+    
+        // Format date to DD-MM-YY
+        const formattedDate = date
+          .toLocaleDateString("en-GB", { year: "2-digit", month: "2-digit", day: "2-digit" })
+          .replace(/\//g, "-");
+    
         // Count clicks per date
-        dateClicksMap[date] = (dateClicksMap[date] || 0) + 1;
-
+        dateClicksMap[formattedDate] = (dateClicksMap[formattedDate] || 0) + 1;
+    
         // Categorize and count user devices
         const category = categorizeDevice(userDevice);
         userDeviceCounts[category] += 1;
       });
-
+    
       // Sort dates (oldest first) and accumulate clicks
       const sortedDates = Object.entries(dateClicksMap)
         .map(([date, count]) => ({ date, noOfClicks: count }))
-        .sort((a, b) => new Date(a.date) - new Date(b.date));
+        .sort((a, b) => new Date(a.date.split("-").reverse().join("-")) - new Date(b.date.split("-").reverse().join("-")));
+    
+      // clicksData.forEach((record) => {
+      //   const { clickedAt, userDevice } = record.click;
+      //   const date = clickedAt.split("T")[0];
+
+      //   // Count clicks per date
+      //   dateClicksMap[date] = (dateClicksMap[date] || 0) + 1;
+
+      //   // Categorize and count user devices
+      //   const category = categorizeDevice(userDevice);
+      //   userDeviceCounts[category] += 1;
+      // });
+
+      // Sort dates (oldest first) and accumulate clicks
+      // const sortedDates = Object.entries(dateClicksMap)
+      //   .map(([date, count]) => ({ date, noOfClicks: count }))
+      //   .sort((a, b) => new Date(a.date) - new Date(b.date));
 
       const accumulatedDateClicks = [];
       let cumulativeClicks = 0;
@@ -78,7 +100,7 @@ const Dashboard = () => {
       for (const entry of sortedDates) {
         cumulativeClicks += entry.noOfClicks;
         accumulatedDateClicks.push({ date: entry.date, noOfClicks: cumulativeClicks });
-      }
+      };
 
       // Reverse the accumulated array to show latest dates first
       setDateClicks(accumulatedDateClicks.reverse());
@@ -90,6 +112,7 @@ const Dashboard = () => {
 
   //      function for creating the link
   const handleCreateLink = () => {
+    console.log("aa");
     setModalStatus(true);
   };
 
@@ -106,7 +129,6 @@ const Dashboard = () => {
       <div className={styles.sidebarContainer}>
         <Sidebar />
       </div>
-      {/* <div className={styles.pageSection}> */}
         <div className={styles.contentContainer}>
           {
             data && (
@@ -153,7 +175,6 @@ const Dashboard = () => {
             )
           }
         </div>
-      {/* </div> */}
       {/*             Modal Container          */}
       {modalStatus && (
         <div className={styles.modalViewContainer}>
