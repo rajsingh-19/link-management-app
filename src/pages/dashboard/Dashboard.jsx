@@ -50,8 +50,8 @@ const Dashboard = () => {
       const userDeviceCounts = { Mobile: 0, Desktop: 0, Tablet: 0 };
 
       const categorizeDevice = (userDevice) => {
-        if (userDevice.includes("Mobile")) return "Mobile";
-        if (userDevice.includes("Tablet")) return "Tablet";
+        if (userDevice.includes("android") || userDevice.includes("ios")) return "Mobile";
+        if (userDevice.includes("tablet")) return "Tablet";
         return "Desktop";
       };
 
@@ -95,7 +95,6 @@ const Dashboard = () => {
 
   //      function for creating the link
   const handleCreateLink = () => {
-    console.log("aa");
     setModalStatus(true);
   };
 

@@ -95,21 +95,36 @@ const Links = () => {
     });
   };
 
-  // Handle status sorting toggle
-  const handleStatusSort = () => {
-    if (!isGroupedByStatus) {
-      // Store the original order if grouping is being applied for the first time
-      setOriginalLinkData([...linkData]);
-      const groupedLinks = groupLinksByStatus(linkData);
-      setLinkData(groupedLinks); // Group links by status
-    } else {
-      // Restore the original order
-      setLinkData(originalLinkData);
-    }
+  // // Handle status sorting toggle
+  // const handleStatusSort = () => {
+  //   if (!isGroupedByStatus) {
+  //     // Store the original order if grouping is being applied for the first time
+  //     setOriginalLinkData([...linkData]);
+  //     const groupedLinks = groupLinksByStatus(linkData);
+  //     setLinkData(groupedLinks); // Group links by status
+  //   } else {
+  //     // Restore the original order
+  //     setLinkData(originalLinkData);
+  //   }
 
-    // Toggle the grouping state
-    setIsGroupedByStatus(!isGroupedByStatus);
+  //   // Toggle the grouping state
+  //   setIsGroupedByStatus(!isGroupedByStatus);
+  // };
+
+  const handleStatusSort = () => {
+    setIsGroupedByStatus(prevState => !prevState);
   };
+
+  useEffect(() => {
+    if (isGroupedByStatus) {
+      setOriginalLinkData([...linkData]); // Store the original state
+      const groupedLinks = groupLinksByStatus(linkData);
+      setLinkData(groupedLinks);
+    } else {
+      setLinkData([...originalLinkData]); // Restore the original order
+    }
+  }, [isGroupedByStatus]);
+
 
   const handleCopyLink = (shortenUrl) => {
     // Copy the shorten URL to the clipboard
