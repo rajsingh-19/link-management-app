@@ -73,3 +73,10 @@
         justify-content: center;
     }
 }
+
+@media (min-width:425px) and (max-width:1024px) {
+    .cardContainer {
+        width: 417px;
+        height: 195px;
+    }
+}

@@ -187,3 +187,17 @@
         color: white;
     }
 }
+
+@media (min-width:425px) and (max-width:1024px) {
+    .secondSection {
+        height: 500px;
+    }
+
+    .thirdSection {
+        background: #808080fc;
+    }
+
+    .clear {
+        color: white;
+    }
+}
