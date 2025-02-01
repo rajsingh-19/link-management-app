@@ -19,6 +19,7 @@ const Settings = () => {
   const [modalStatus, setModalStatus] = useState(false);
   const [confirmModalStatus, setConfirmModalStatus] = useState(false);  
   const [isDeleting, setIsDeleting] = useState(false); // Track deletion status
+  const [matchingEmail, setMatchingEmail] = useState("");
 
   useEffect(() => {  
     let isMounted = true; // Variable to track whether the component is mounted
@@ -44,6 +45,7 @@ const Settings = () => {
             email: data.result.email,
             mobile: data.result.mobile
           });
+          setMatchingEmail(data.result.email);
         } else if (isMounted) {
           const errorData = await userDataRes.json();
           const errorMessage = errorData.message || "An error occurred";
@@ -109,6 +111,12 @@ const Settings = () => {
       if (res.status === 201) {
 
         toast.success("Updated Successfully");
+        if(matchingEmail !== updateFormData.email) {
+          localStorage.removeItem('userId');
+          localStorage.removeItem('token');
+          localStorage.removeItem('name');
+          navigate('/');
+        }
       } else {
         const errorData = await res.json();
         const errorMessage = errorData.message || "An error occurred";
@@ -163,7 +171,6 @@ const Settings = () => {
         toast.success("Account Deleted Successfully");
         navigate('/');
       } else {
-        console.log(res);
         // Handles any errors by logging the response and showing an alert
         const errorData = await res.json();
         const errorMessage = errorData.message || "An error occurred";

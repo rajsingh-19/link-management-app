@@ -83,32 +83,17 @@ const Links = () => {
     setSortOrder(newSortOrder); // Update sort order state
   };
 
-  // Function to group links by status (Active on top)
-  const groupLinksByStatus = (links) => {
-    return [...links].sort((a, b) => {
-      const statusA = a.linkExpiryDate && new Date(a.linkExpiryDate) > new Date() ? 'Active' : 'Inactive';
-      const statusB = b.linkExpiryDate && new Date(b.linkExpiryDate) > new Date() ? 'Active' : 'Inactive';
-
-      // Active links come before Inactive
-      return statusA === 'Active' && statusB === 'Inactive' ? -1 :
-        statusA === 'Inactive' && statusB === 'Active' ? 1 : 0;
-    });
-  };
-
+  //    handle status sort 
   const handleStatusSort = () => {
-    setIsGroupedByStatus(prevState => !prevState);
+    const sortedLinks = [...linkData].sort((a, b) => {
+      const statusA = (!a.linkExpiryDate || new Date(a.linkExpiryDate) > new Date()) ? 1 : 0;
+      const statusB = (!b.linkExpiryDate || new Date(b.linkExpiryDate) > new Date()) ? 1 : 0;
+      return isGroupedByStatus ? statusA - statusB : statusB - statusA;
+    });
+  
+    setIsGroupedByStatus(!isGroupedByStatus);
+    setLinkData(sortedLinks);
   };
-
-  useEffect(() => {
-    if (isGroupedByStatus) {
-      setOriginalLinkData([...linkData]); // Store the original state
-      const groupedLinks = groupLinksByStatus(linkData);
-      setLinkData(groupedLinks);
-    } else {
-      setLinkData([...originalLinkData]); // Restore the original order
-    }
-  }, [isGroupedByStatus]);
-
 
   const handleCopyLink = (shortenUrl) => {
     // Copy the shorten URL to the clipboard

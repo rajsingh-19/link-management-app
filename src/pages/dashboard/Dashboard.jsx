@@ -71,29 +71,37 @@ const Dashboard = () => {
         const category = categorizeDevice(userDevice);
         userDeviceCounts[category] += 1;
       });
-    
-      // Sort dates (oldest first) and accumulate clicks
+
       const sortedDates = Object.entries(dateClicksMap)
-        .map(([date, count]) => ({ date, noOfClicks: count }))
-        .sort((a, b) => new Date(a.date.split("-").reverse().join("-")) - new Date(b.date.split("-").reverse().join("-")));
+        .map(([date, count]) => ({
+          date,
+          noOfClicks: count
+        }))
+        .sort((a, b) => {
+          const dateA = new Date(a.date.split("-").reverse().join("-"));
+          const dateB = new Date(b.date.split("-").reverse().join("-"));
+          return dateB - dateA; // Reverse order (latest date first)
+        });
+
+      const revSortedDates = sortedDates.reverse();
 
       const accumulatedDateClicks = [];
       let cumulativeClicks = 0;
 
-      for (const entry of sortedDates) {
+      for (const entry of revSortedDates) {
         cumulativeClicks += entry.noOfClicks;
         accumulatedDateClicks.push({ date: entry.date, noOfClicks: cumulativeClicks });
       };
 
       // Reverse the accumulated array to show latest dates first
       setDateClicks(accumulatedDateClicks.reverse());
+      // setDateClicks(accumulatedDateClicks);
       setDeviceCounts(userDeviceCounts);
     };
 
     processData();
   }, [clicksData]);
-
-  //      function for creating the link
+  
   const handleCreateLink = () => {
     setModalStatus(true);
   };
